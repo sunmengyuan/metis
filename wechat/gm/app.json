@@ -1,0 +1,18 @@
+{
+    "pages": [
+        "pages/demo/demo"
+    ],
+    "window": {
+        "navigationBarTitleText": "呆恋小喵",
+        "navigationBarTextStyle": "black",
+        "navigationBarBackgroundColor": "#FFF",
+        "enablePullDownRefresh": true,
+        "onReachBottomDistance": 50
+    },
+    "networkTimeout": {
+        "request": 10000,
+        "downloadFile": 60000,
+        "uploadFile": 60000
+    },
+    "debug": true
+}

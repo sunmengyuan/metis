@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cat</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+        .btn{position: fixed;top: 20px;left: 0;z-index: 10;}
+        .btn a{display: inline-block;line-height: 30px;font-size: 22px;color: #333;border: 1px solid #333;border-radius: 3px;padding: 0 15px;margin-left: 20px;}
+
+        svg{position: fixed;top: 0;left: 0;width: 100%;height: 100%;}
+        path{fill: none;stroke: orange;stroke-width: 5;stroke-dasharray: 1194;}
+        line{stroke: #FF5722;stroke-width: 2;stroke-dasharray: 5;}
+        circle{fill: #772E00;}
+        circle.point-ctrl{fill: #FF5722;}
+    </style>
+</head>
+<body>
+<div class="btn"><a href="javascript:;" class="js_assist">assist</a><a href="javascript:;" class="js_animate">animate</a></div>
+<svg>
+    <path id="cat" d="M 300 300 q 40 -150 80 0 q 60 -10 120 0 q 40 -150 80 0 t 0 200 t -140 50 t -140 -50 t 0 -200 Z" />
+    <!-- 路径动画 -->
+    <animate xlink:href="#cat" attributeName="stroke-dashoffset" from="1194" to="0" dur="3s" begin="indefinite" restart="whenNotActive" />
+
+    <!-- 辅助点 -->
+        <!-- 线上点 -->
+        <circle cx="300" cy="300" r="5" />
+        <circle cx="380" cy="300" r="5" />
+        <circle cx="500" cy="300" r="5" />
+        <circle cx="580" cy="300" r="5" />
+        <circle cx="580" cy="500" r="5" />
+        <circle cx="440" cy="550" r="5" />
+        <circle cx="300" cy="500" r="5" />
+        <!-- 控制点 -->
+        <circle class="point-ctrl" cx="340" cy="150" r="5" />
+        <circle class="point-ctrl" cx="440" cy="290" r="5" />
+        <circle class="point-ctrl" cx="540" cy="150" r="5" />
+        <circle class="point-ctrl" cx="620" cy="450" r="5" />
+        <circle class="point-ctrl" cx="540" cy="550" r="5" />
+        <circle class="point-ctrl" cx="340" cy="550" r="5" />
+        <circle class="point-ctrl" cx="260" cy="450" r="5" />
+    <!-- 辅助线 -->
+    <line x1="540" y1="150" x2="620" y2="450" />
+    <line x1="620" y1="450" x2="540" y2="550" />
+    <line x1="540" y1="550" x2="340" y2="550" />
+    <line x1="340" y1="550" x2="260" y2="450" />
+    <line x1="260" y1="450" x2="340" y2="150" />
+</svg>
+<script src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+<script>
+    var $assist = $('circle, line');
+    // 辅助线
+    $('.js_assist').on('click', function () {
+        $assist.toggle();
+    });
+    // 路径动画
+    $('.js_animate').on('click', function () {
+        $assist.hide();
+        // 重启动画
+        $('animate').get(0).beginElement();
+    });
+</script>
+</body>
+</html>

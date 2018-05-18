@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LocalStorage</title>
+    <style>
+        .item{width: 100px;height: 100px;margin: 50px auto;background-color: yellow;}
+        .btn{position: fixed;top: 10px;left: 10px;border: 1px solid #666;color: #666;border-radius: 3px;font-size: 14px;line-height: 22px;padding: 0 10px;cursor: pointer;}
+        .red{background-color: red;}
+    </style>
+</head>
+<body>
+<div class="item"></div>
+<div class="btn">clear</div>
+<script src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+<script>
+    /**
+     * sessionStorage：会话级本地存储，以顶级页面为单位进行数据划分
+     * localStorage：持久化本地存储，以域名为单位进行数据划分
+     */
+
+    // example1
+    if (window.localStorage) {
+        var isExist = localStorage.getItem('color');
+
+        if (!isExist) {
+            localStorage.setItem('color', 1);
+        } else {
+            $('.item').addClass('red');
+        }
+    }
+
+    // example2
+    var storage = window.localStorage;
+    for (var i = 0;i < storage.length;i++) {
+        var key = storage.key(i);
+        var value = localStorage.getItem(key);
+
+        console.log(key + '|' + value);
+    }
+
+    // example3
+    $('.btn').on('click', function () {
+        var isExist = localStorage.getItem('color');
+        if (isExist) {
+            localStorage.clear();
+        } else {
+            localStorage.setItem('color', 1);
+        }
+    });
+    // storage 事件需要在同一域下的不同页面监听
+    window.addEventListener('storage', showEvent, false);
+    function showEvent (e) {
+        console.log(e);
+    }
+</script>
+</body>
+</html>

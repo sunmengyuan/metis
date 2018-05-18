@@ -1,0 +1,22 @@
+<%- include ../header %>
+<section class='m-myinfo card'>
+    <form id='form_myinfo' autocomplete='off'>
+        <input type='text' id='nickname' name='nickname' placeholder='昵称' value='<%= info.nickname %>' />
+        <input type='text' id='sex' name='sex' placeholder='性别' value='<%= info.sex %>' />
+        <input type='text' id='tel' name='tel' placeholder='TEL' value='<%= info.tel %>' />
+        <input type='text' id='qq' name='qq' placeholder='QQ' value='<%= info.qq %>' />
+        <input type='text' id='intro' name='intro' placeholder='一句话描述自己' value='<%= info.intro %>' />
+        <div class='myinfo-password'>
+            <a href='javascript:;' class='c-inline js_password'>修改密码</a>
+            <div class='c-hidden'>
+                <input type='text' id='password_old' placeholder='旧密码' />
+                <input type='text' id='password_new' placeholder='新密码' />
+            </div>
+        </div>
+    </form>
+    <div>
+        <a href='javascript:;' class='js_myinfo'>提交</a><a href='/chatroom' class='js_enter'>跳过</a>
+    </div>
+</section>
+<script src='/script/edit.js'></script>
+<%- include ../footer %>

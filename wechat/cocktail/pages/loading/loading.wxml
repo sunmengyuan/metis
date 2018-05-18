@@ -1,0 +1,10 @@
+<view class="section-loading">
+  <view class="corner">
+    <view class="{{item}}" wx:for="{{['fst','scd','thd','fth']}}"></view>
+  </view>
+  <view class="loading-percent c-center">
+    <view class="glass"></view>
+    <view class="cocktail" style="top: {{50 - loadingPercent * 18 / 100}}px" wx:if="{{loadingPercent > 0}}"></view>
+    <text>{{loadingPercent}} %</text>
+  </view>
+</view>

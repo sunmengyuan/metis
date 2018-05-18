@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Counter</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        ul, ol{list-style: none;margin-top: 50px;text-align: center;line-height: 32px;font-size: 14px;color: #666;}
+
+        /** counter
+         * 可以连续调用
+         * 可以混合使用
+         * 可使用分隔符
+         */
+        .box{counter-reset: count1 0 count2 1;}
+        ul li:before{counter-increment: count1 count2 3;content: counter(count1, upper-roman) '-' counter(count2) ' ';}
+        ol li:before{counter-increment: count2 2;content: counter(count2) ' ';}
+    </style>
+</head>
+<body>
+<div class="box">
+    <ul>
+        <li>这里是一段文字</li>
+        <li>这里是一段文字</li>
+        <li>这里是一段文字</li>
+        <li>这里是一段文字</li>
+        <li>这里是一段文字</li>
+    </ul>
+    <ol>
+        <li>这里是一段文字</li>
+        <li>这里是一段文字</li>
+        <li>这里是一段文字</li>
+        <li>这里是一段文字</li>
+        <li>这里是一段文字</li>
+    </ol>
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Distance</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        body{padding: 50px;}
+        .other, .target, .item{width: 100px;height: 100px;}
+        .other{margin: 30px;background-color: greenyellow;}
+        .target{background-color: cornflowerblue;padding: 20px;margin: 30px;border: 10px solid blueviolet;overflow: auto;}
+        .target::-webkit-scrollbar{opacity: 0;width: 0;height: 0;}
+        .item{background-color: lightyellow;border: 10px solid greenyellow;border-left: none;border-right: none;}
+    </style>
+</head>
+<body>
+<div class="other"></div>
+<div class="target js_target">
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+</div>
+<script src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+<script>
+    var $target = $('.target').get(0);
+
+    var offsetTop = $target.offsetTop;
+    var offsetHeight = $target.offsetHeight;
+
+    var clientTop = $target.clientTop;
+    var clientHeight = $target.clientHeight;
+
+    var scrollTop = $target.scrollTop;
+    var scrollHeight = $target.scrollHeight;
+
+    console.log(offsetTop); // -> 210 (documentTop 距 targetBorder)
+    console.log(offsetHeight); // -> 160 (content + padding + border)
+    console.log(clientTop); // -> 10 (borderWidth)
+    console.log(clientHeight); // -> 140 (content + padding)
+    console.log(scrollTop);
+    console.log(scrollHeight); // -> 400 (childHeight + padding)
+</script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+@import "../../app.wxss";
+
+.fliter-bar,
+.fliter-wrap {
+    position: fixed;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+}
+.fliter .placeholder {
+    height: 84rpx;
+}
+.fliter-bar {
+    top: 0;
+    border-top: 1rpx solid #DADADA;
+    border-bottom: 1rpx solid #DADADA;
+    background-color: #FFF;
+}
+.fliter-bar .item {
+    position: relative;
+    float: left;
+    width: 33.33%;
+    text-align: center;
+}
+.fliter-bar text {
+    font-size: 30rpx;
+    line-height: 80rpx;
+    color: #353535;
+    margin-left: -16rpx;
+}
+.fliter-bar .item.active text {
+    color: #4ABAB4;
+}
+.fliter-bar .item:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 1rpx;
+    height: 40rpx;
+    margin-top: -20rpx;
+    background-color: #CCC;
+}
+.fliter-bar .item:last-child:after {
+    display: none;
+}
+.fliter-bar .icon {
+    position: absolute;
+    margin-left: 68rpx;
+}
+.fliter-bar .icon:before,
+.fliter-bar .icon:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border: 8rpx solid transparent;
+}
+.fliter-bar .icon:before {
+    border-bottom-width: 10rpx;
+    border-bottom-color: #BCBEC1;
+    margin-bottom: 8rpx;
+}
+.fliter-bar .icon:after {
+    border-top-width: 10rpx;
+    border-top-color: #BCBEC1;
+}
+
+.fliter-wrap {
+    top: 84rpx;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.fliter-wrap text {
+    display: block;
+    font-size: 28rpx;
+    line-height: 88rpx;
+    color: #464646;
+}
+.fliter-wrap .active {
+    color: #4ABAB4;
+}
+.fliter-wrap .col2,
+.fliter-wrap .col3 {
+    box-sizing: border-box;
+}
+.fliter-wrap .col2 text,
+.fliter-wrap .col3 text,
+.fliter-wrap .orders text {
+    border-bottom: 1rpx solid #F0F0F0;
+}
+.fliter-wrap .col2 text:last-child,
+.fliter-wrap .col3 text:last-child {
+    margin-bottom: 30rpx;
+}
+.fliter-wrap .col1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 180rpx;
+    background-color: #F4F3F8;
+}
+.fliter-wrap .col1 text {
+    color: #666;
+    padding: 0 38rpx 0 26rpx;
+    border-left: 4rpx solid transparent;
+}
+.fliter-wrap .col1 .active {
+    color: #4ABAB4;
+    border-color: #4ABAB4;
+    background-color: #FFF;
+}
+.fliter-wrap .col2 {
+    padding-left: 30rpx;
+    border-right: 1rpx solid #F0F0F0;
+}
+.fliter-wrap .col3,
+.fliter-wrap .tags .col2 {
+    padding-right: 30rpx;
+}
+.fliter-wrap .col3 text {
+    padding-left: 32rpx;
+}
+.fliter-wrap .orders scroll-view {
+    padding-left: 30rpx;
+}
+.fliter-wrap .orders text {
+    padding-left: 36rpx;
+}
+.fliter-wrap .orders text:last-child {
+    border-bottom: none;
+}
+
+.fliter-wrap .areas,
+.fliter-wrap .areas .col1,
+.fliter-wrap .areas .col2,
+.fliter-wrap .areas .col3,
+.fliter-wrap .tags,
+.fliter-wrap .tags .col1,
+.fliter-wrap .tags .col2 {
+    height: 889rpx;
+}
+.fliter-wrap .areas .col2,
+.fliter-wrap .areas .col3 {
+    float: left;
+    width: 50%;
+}
+.fliter-wrap .areas,
+.fliter-wrap .tags {
+    position: relative;
+    padding-left: 180rpx;
+    background-color: #FFF;
+}
+.fliter-wrap .orders {
+    background-color: #FFF;
+}
+.fliter-wrap .orders scroll-view {
+    height: 355rpx;
+}

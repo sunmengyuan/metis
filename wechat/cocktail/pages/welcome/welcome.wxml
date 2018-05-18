@@ -1,0 +1,11 @@
+<view class="section-welcome">
+  <view class="corner">
+    <view class="{{item}}" wx:for="{{['fst','scd','thd','fth']}}"></view>
+  </view>
+  <view class="welcome-mn c-center">
+    <view class="welcome-bar">
+      <view class="door {{triggerStart && 'opendoor'}}"></view>
+    </view>
+    <button class="btn-start btn-common" bindtap="handleStart">开始</button>
+  </view>
+</view>

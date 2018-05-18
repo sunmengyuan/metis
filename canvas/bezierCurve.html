@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <title>BezierCurve</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        .canvas{position: fixed;width: 100%;height: 100%;}
+    </style>
+</head>
+<body>
+<canvas class="canvas"></canvas>
+<script src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+<script src="https://cdn.bootcss.com/touchjs/0.2.14/touch.min.js"></script>
+<script>
+    var sketch = {
+
+        canvas: null,
+        context: null,
+        ratio: null,
+
+        isDragging: false,
+        draggedPoint: null,
+        coordinate: {
+            sX: 50,
+            sY: 100,
+            cX1: 100,
+            cY1: 50,
+            cX2: 200,
+            cY2: 200,
+            eX: 300,
+            eY: 60
+        },
+        init: function () {
+            var _this = this;
+
+            _this.initCanvas();
+            _this.initContext();
+            _this.drawBezier();
+            _this.drawPoint();
+            _this.dragPoint();
+        },
+        initCanvas: function () {
+            var _this = this;
+            var canvas = $('.canvas').get(0);
+            var context = canvas.getContext('2d');
+            var ratio = window.devicePixelRatio || 1;
+
+            canvas.width = canvas.offsetWidth * ratio;
+            canvas.height = canvas.offsetHeight * ratio;
+            context.scale(ratio, ratio);
+
+            _this.ratio = ratio;
+            _this.canvas = canvas;
+            _this.context = context;
+        },
+        initContext: function () {
+            var _this = this;
+
+            _this.context.lineWidth = 2;
+            _this.context.fillStyle = 'lightgrey';
+            _this.context.strokeStyle = 'blueviolet';
+        },
+        drawBezier: function () {
+            var _this = this;
+            var coo = _this.coordinate;
+
+            _this.context.beginPath();
+            _this.context.moveTo(coo.sX, coo.sY);
+            _this.context.bezierCurveTo(coo.cX1, coo.cY1, coo.cX2, coo.cY2, coo.eX, coo.eY);
+            _this.context.stroke();
+        },
+        drawPoint: function (coo) {
+            var _this = this;
+            var x = 0;
+            var y = 0;
+            var index = 0;
+
+            $.each(_this.coordinate, function (key, value) {
+                if (index % 2) {
+                    // 绘制点坐标
+                    y = value;
+                    // 绘制辅助点
+                    _this.context.beginPath();
+                    _this.context.arc(x, y, 5, 0, 2 * Math.PI);
+                    _this.context.fill();
+
+                    // 触屏点坐标
+                    if (coo) {
+                        var isInPath = _this.context.isPointInPath(_this.ratio * coo.x, _this.ratio * coo.y);
+                        if (isInPath) {
+                            _this.isDragging = true;
+                            _this.draggedPoint = key;
+                        }
+                    }
+                } else {
+                    // 绘制点坐标
+                    x = value;
+                }
+
+                index += 1;
+            });
+        },
+        dragPoint: function () {
+            var _this = this;
+            var flag = false;
+            var $canvas = $(_this.canvas);
+            var width = _this.canvas.width;
+            var height = _this.canvas.height;
+            var redraw = function (e) {
+                if (flag && _this.isDragging) {
+                    // 选取点关键字
+                    var draggedX = _this.draggedPoint.replace('Y', 'X');
+                    var draggedY = _this.draggedPoint;
+
+                    // 重绘贝塞尔曲线及辅助点
+                    _this.coordinate[draggedX] = e.pageX;
+                    _this.coordinate[draggedY] = e.pageY;
+                    _this.context.clearRect(0, 0, width, height);
+                    _this.drawBezier();
+                    _this.drawPoint();
+                }
+            };
+            var trigger = function (e) {
+                var coo = {x: e.pageX, y: e.pageY};
+
+                flag = true;
+                _this.drawPoint(coo);
+            };
+
+            $canvas.on({
+                'mousedown': function (e) {
+                    trigger(e);
+                },
+                'touchstart': function (e) {
+                    trigger(e.originalEvent.touches[0]);
+                }
+            });
+            $canvas.on({
+                'mouseup': function () {
+                    flag = false;
+                    _this.isDragging = false;
+                },
+                'touchend': function () {
+                    flag = false;
+                    _this.isDragging = false;
+                }
+            });
+            $canvas.on({
+                'mousemove': function (e) {
+                    redraw(e);
+                },
+                'touchmove': function (e) {
+                    redraw(e.originalEvent.touches[0]);
+                }
+            });
+        }
+    };
+
+    sketch.init();
+</script>
+</body>
+</html>

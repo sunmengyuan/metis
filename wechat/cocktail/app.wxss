@@ -1,0 +1,12 @@
+text{font-size: 16px;line-height: 1.5;color: #666;}
+button::after{display: none;}
+
+.c-center{top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);}
+.c-fix:after{content: "";display: block;height: 0;clear: both;visibility: hidden;}
+button.btn-common{width: 100px;font-size: 16px;line-height: 4;color: #333;background: url("http://ormq8rb63.bkt.clouddn.com/bg-btn.png") no-repeat 50% 50%;background-size: 100px auto;}
+
+.corner view{position: fixed;width: 70px;height: 70px;background: url("http://ormq8rb63.bkt.clouddn.com/corner.jpg") no-repeat 0 0;background-size: 70px auto;}
+.corner .fst{top: 0;left: 0;-webkit-transform: rotate(0deg);transform: rotate(0deg);}
+.corner .scd{top: 0;right: 0;-webkit-transform: rotate(-270deg);transform: rotate(-270deg);}
+.corner .thd{bottom: 0;left: 0;-webkit-transform: rotate(-90deg);transform: rotate(-90deg);}
+.corner .fth{bottom: 0;right: 0;-webkit-transform: rotate(-180deg);transform: rotate(-180deg);}

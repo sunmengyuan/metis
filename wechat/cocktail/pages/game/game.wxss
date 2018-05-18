@@ -1,0 +1,119 @@
+.game-mn{position: fixed !important;position: relative;width: 100%;top: 45%;}
+
+.btn-share{margin: 35px auto;}
+.btn-reset{width: 80px;height: 40px;left: 15px;background: url("http://ormq8rb63.bkt.clouddn.com/btn-reset.jpg") no-repeat 50% 50%;background-size: 80px auto;}
+.btn-shake{width: 50px;height: 55px;right: 15px;background: url("http://ormq8rb63.bkt.clouddn.com/btn-shake.jpg") no-repeat 50% 50%;background-size: 50px auto;}
+.btn-finish{width: 80px;height: 80px;right: 15px;background: url("http://ormq8rb63.bkt.clouddn.com/btn-finish.png") no-repeat 50% 50%;background-size: 80px auto;}
+.btn-reset, .btn-shake, .btn-finish{position: absolute;top: 150px;z-index: 10;}
+
+.game-effect{position: relative;width: 200px;margin: 5px auto;}
+.effect-glass .glass{height: 230px;background: url("http://oij8a9ql4.bkt.clouddn.com/nothumb.png") no-repeat 50% 100%;background-size: 200px auto;}
+.effect-fruit view, .effect-decorate view{position: absolute;width: 50px;background: url("http://oij8a9ql4.bkt.clouddn.com/nothumb.png") no-repeat 50% 50%;background-size: 50px auto;}
+.effect-fruit view{height: 50px;z-index: -1;}
+.effect-fruit.aftershake view{opacity: 0.5;}
+.effect-decorate view{height: 90px;}
+.effect-decorate .decorate2{-webkit-transform: rotate(-100deg);transform: rotate(-100deg);opacity: 0.5;}
+view.effect-color{position: absolute;z-index: -2;width: 100%;}
+
+.game-tab text{position: relative;float: left;width: 25%;line-height: 2.5;text-align: center;background: url("http://ormq8rb63.bkt.clouddn.com/bg-nav.png") no-repeat 50% 100%;background-size: 70px auto;}
+.game-tab text.active:after{content: "";position: absolute;left: 50%;bottom: -5px;width: 20px;height: 20px;margin-left: -10px;background: url("http://ormq8rb63.bkt.clouddn.com/tab.png") no-repeat 50% 50%;background-size: 20px auto;}
+
+.game-option, .game-decorate{margin: 5px 0;padding: 0 15px;}
+.option-lst{height: 0;padding-bottom: 60%;}
+.option-lst view{position: relative;float: left;width: 33.33%;height: 0;padding-bottom: 30%;}
+.option-lst icon{position: absolute;width: 70%;height: 0;padding-bottom: 70%;border: 1px solid #E5E5E5;border-radius: 5px;background: url("http://oij8a9ql4.bkt.clouddn.com/nothumb.png") no-repeat 50% 50%;background-size: auto 88%;}
+.option-lst view.active icon{border-color: greenyellow;}
+.option-glass view{padding-bottom: 40%;}
+.option-glass icon{width: 80%;padding-bottom: 80%;}
+
+.game-share{width: 80%;margin: 20px auto;text-align: center;}
+.game-share text{font-size: 18px;line-height: 1.5;color: #333;}
+
+.game-name, .game-shake{position: fixed;left: 0;top: 0;width: 100%;height: 100%;background-color: rgba(0,0,0,0.6);}
+
+.game-name .dialog-name{position: fixed !important;position: relative;top: 35%;width: 300px;height: 150px;background: url("http://ormq8rb63.bkt.clouddn.com/dialog-name.png") no-repeat 50% 50%;background-size: 300px auto;}
+.dialog-name input{position: absolute;top: 56px;left: 50%;width: 180px;margin-left: -90px;text-align: center;}
+
+.game-shake .shaker{width: 100%;height: 100%;background: url("http://ormq8rb63.bkt.clouddn.com/shaker.png?refresh") no-repeat 55% 30%;background-size: 130px auto;}
+
+.shake{-webkit-animation: shake 0.5s forwards;animation: shake 0.5s forwards;-webkit-transform-origin: 50% 40%;transform-origin: 50% 40%;}
+@-webkit-keyframes shake
+{
+0%{-webkit-transform: rotate(-60deg);transform: rotate(-60deg);}
+10%{-webkit-transform: rotate(40deg);transform: rotate(40deg);}
+20%{-webkit-transform: rotate(-60deg);transform: rotate(-60deg);}
+30%{-webkit-transform: rotate(40deg);transform: rotate(40deg);}
+40%{-webkit-transform: rotate(-60deg);transform: rotate(-60deg);}
+50%{-webkit-transform: rotate(40deg);transform: rotate(40deg);}
+60%{-webkit-transform: rotate(-60deg);transform: rotate(-60deg);}
+70%{-webkit-transform: rotate(40deg);transform: rotate(40deg);}
+80%{-webkit-transform: rotate(-60deg);transform: rotate(-60deg);}
+90%{-webkit-transform: rotate(40deg);transform: rotate(40deg);}
+100%{-webkit-transform: rotate(-5deg);transform: rotate(-5deg);}
+}
+@keyframes shake
+{
+0%{-webkit-transform: rotate(-60deg);transform: rotate(-60deg);}
+10%{-webkit-transform: rotate(40deg);transform: rotate(40deg);}
+20%{-webkit-transform: rotate(-60deg);transform: rotate(-60deg);}
+30%{-webkit-transform: rotate(40deg);transform: rotate(40deg);}
+40%{-webkit-transform: rotate(-60deg);transform: rotate(-60deg);}
+50%{-webkit-transform: rotate(40deg);transform: rotate(40deg);}
+60%{-webkit-transform: rotate(-60deg);transform: rotate(-60deg);}
+70%{-webkit-transform: rotate(40deg);transform: rotate(40deg);}
+80%{-webkit-transform: rotate(-60deg);transform: rotate(-60deg);}
+90%{-webkit-transform: rotate(40deg);transform: rotate(40deg);}
+100%{-webkit-transform: rotate(-5deg);transform: rotate(-5deg);}
+}
+
+.effect-glass .glass1{background-image: url("http://ormq8rb63.bkt.clouddn.com/glass1.png");}
+.effect-glass .glass2{background-image: url("http://ormq8rb63.bkt.clouddn.com/glass2.png");}
+.effect-glass .glass3{background-image: url("http://ormq8rb63.bkt.clouddn.com/glass3.png");}
+
+.effect-fruit .fruit1{background-image: url("http://ormq8rb63.bkt.clouddn.com/result-fruit1.png");}
+.effect-fruit .fruit2{background-image: url("http://ormq8rb63.bkt.clouddn.com/result-fruit2.png?refresh");}
+.effect-fruit .fruit3{background-image: url("http://ormq8rb63.bkt.clouddn.com/result-fruit3.png");}
+.effect-fruit .fruit4{background-image: url("http://ormq8rb63.bkt.clouddn.com/result-fruit4.png");}
+.effect-fruit .fruit5{background-image: url("http://ormq8rb63.bkt.clouddn.com/result-fruit5.png?refresh");}
+.effect-fruit .fruit6{background-image: url("http://ormq8rb63.bkt.clouddn.com/result-fruit6.png?refresh");}
+
+.effect-decorate .decorate1{background-image: url("http://ormq8rb63.bkt.clouddn.com/decorate1.png");}
+.effect-decorate .decorate2{background-image: url("http://ormq8rb63.bkt.clouddn.com/decorate2.png");}
+.effect-decorate .decorate3{background-image: url("http://ormq8rb63.bkt.clouddn.com/decorate3.png");}
+.effect-decorate .decorate4{background-image: url("http://ormq8rb63.bkt.clouddn.com/decorate4.png");}
+.effect-decorate .decorate5{background-image: url("http://ormq8rb63.bkt.clouddn.com/decorate5.png");}
+.effect-decorate .decorate6{background-image: url("http://ormq8rb63.bkt.clouddn.com/decorate6.png");}
+
+.option-glass .glass1 icon{background-image: url("http://ormq8rb63.bkt.clouddn.com/glass1.png");}
+.option-glass .glass2 icon{background-image: url("http://ormq8rb63.bkt.clouddn.com/glass2.png");}
+.option-glass .glass3 icon{background-image: url("http://ormq8rb63.bkt.clouddn.com/glass3.png");}
+
+.option-layer .layer1 icon{background-image: url("http://ormq8rb63.bkt.clouddn.com/layer1.png");}
+.option-layer .layer2 icon{background-image: url("http://ormq8rb63.bkt.clouddn.com/layer2.png");}
+.option-layer .layer3 icon{background-image: url("http://ormq8rb63.bkt.clouddn.com/layer3.png");}
+.option-layer .layer4 icon{background-image: url("http://ormq8rb63.bkt.clouddn.com/layer4.png");}
+.option-layer .layer5 icon{background-image: url("http://ormq8rb63.bkt.clouddn.com/layer5.png");}
+.option-layer .layer6 icon{background-image: url("http://ormq8rb63.bkt.clouddn.com/layer6.png");}
+
+.option-color .color1 icon{background-image: url("http://ormq8rb63.bkt.clouddn.com/color1.jpg");}
+.option-color .color2 icon{background-image: url("http://ormq8rb63.bkt.clouddn.com/color2.jpg");}
+.option-color .color3 icon{background-image: url("http://ormq8rb63.bkt.clouddn.com/color3.jpg");}
+.option-color .color4 icon{background-image: url("http://ormq8rb63.bkt.clouddn.com/color4.jpg");}
+.option-color .color5 icon{background-image: url("http://ormq8rb63.bkt.clouddn.com/color5.jpg");}
+.option-color .color6 icon{background-image: url("http://ormq8rb63.bkt.clouddn.com/color6.jpg");}
+.option-color .color2 icon{background-size: auto 131%;background-position: 47% 117%;}
+.option-color .color5 icon{background-size: auto 134%;background-position: 54% 115%;}
+
+.option-fruit .fruit1 icon{background-image: url("http://ormq8rb63.bkt.clouddn.com/fruit1.jpg");}
+.option-fruit .fruit2 icon{background-image: url("http://ormq8rb63.bkt.clouddn.com/fruit2.jpg");}
+.option-fruit .fruit3 icon{background-image: url("http://ormq8rb63.bkt.clouddn.com/fruit3.jpg");}
+.option-fruit .fruit4 icon{background-image: url("http://ormq8rb63.bkt.clouddn.com/fruit4.jpg");}
+.option-fruit .fruit5 icon{background-image: url("http://ormq8rb63.bkt.clouddn.com/fruit5.jpg");}
+.option-fruit .fruit6 icon{background-image: url("http://ormq8rb63.bkt.clouddn.com/fruit6.jpg");}
+
+.game-decorate .decorate1 icon{background-image: url("http://ormq8rb63.bkt.clouddn.com/decorate1.png");}
+.game-decorate .decorate2 icon{background-image: url("http://ormq8rb63.bkt.clouddn.com/decorate2.png");}
+.game-decorate .decorate3 icon{background-image: url("http://ormq8rb63.bkt.clouddn.com/decorate3.png");}
+.game-decorate .decorate4 icon{background-image: url("http://ormq8rb63.bkt.clouddn.com/decorate4.png");}
+.game-decorate .decorate5 icon{background-image: url("http://ormq8rb63.bkt.clouddn.com/decorate5.png");}
+.game-decorate .decorate6 icon{background-image: url("http://ormq8rb63.bkt.clouddn.com/decorate6.png");}

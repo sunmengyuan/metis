@@ -1,0 +1,35 @@
+<template name="mError">
+    <view class="mError">
+        <image src="/assets/images/holder_error.png"></image>
+        <text>网络错误，下拉页面重新加载</text>
+    </view>
+</template>
+
+<template name="mEmpty">
+    <view class="mEmpty" style="height: {{ height }}rpx;">
+        <image src="/assets/images/holder_{{ type || 'common' }}.png"></image>
+        <text>{{ message || '没有您想要的信息' }}</text>
+    </view>
+</template>
+
+<template name="mLoading">
+    <view class="mLoading">
+        <block wx:if="{{ loading }}">
+            <image src="/assets/icons/icon_loading.png"></image>
+            <text>正在加载...</text>
+        </block>
+        <text class="complete" wx:else>我们是有底线的</text>
+    </view>
+</template>
+
+<template name="mGotop">
+    <view class="mGotop" hidden="{{ !gotop }}" bindtap="gotop">
+        <image src="/assets/icons/icon_gotop.png"></image>
+    </view>
+</template>
+
+<template name="mToast">
+    <view class="mToast" hidden="{{ !show }}">
+        <text>{{ message }}</text>
+    </view>
+</template>

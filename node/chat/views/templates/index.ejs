@@ -1,0 +1,37 @@
+<%- include ../header %>
+<section class='m-log'>
+    <div class='card js_area'>
+        <% if (cur_user.id) { %>
+        <p>
+            本品由<a href='https://github.com/sunmengyuan'> 呆恋小喵 </a>制作
+            <br />
+            <a href='https://github.com/sunmengyuan/metis/tree/master/node/chat'>https://github.com/sunmengyuan/metis/tree/master/node/chat</a>
+            <br />
+            前端开发初学者一枚 欢迎大神前来批评指教
+        </p>
+        <div>
+            <a href='javascript:;' class='js_exit'>切换账号</a><a href='/chatroom'>进入聊天室</a>
+        </div>
+        <% } else { %>
+        <form id='form_login' autocomplete='off'>
+            <input type='text' name='nickname' placeholder='昵称' />
+            <input type='password' name='password' placeholder='密码' />
+        </form>
+        <div>
+            <a href='javascript:;' class='js_login'>登录</a><a href='javascript:;' class='js_switch'>快速注册</a>
+        </div>
+        <% } %>
+    </div>
+    <div class='card c-hidden js_area'>
+        <form id='form_register' autocomplete='off'>
+            <input type='text' id='nickname' name='nickname' placeholder='昵称' />
+            <input type='password' id='password' name='password' placeholder='密码' />
+        </form>
+        <div>
+            <a href='javascript:;' class='js_register'>注册</a><a href='javascript:;' class='js_switch'>取消</a>
+        </div>
+    </div>
+</section>
+<div class="warning">本站纯属作者业余练习 密码不提供加密 请注意个人信息安全</div>
+<script src='/script/log.js'></script>
+<%- include ../footer %>

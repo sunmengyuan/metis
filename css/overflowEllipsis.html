@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <title>OverflowEllipsis</title>
+    <style type="text/less">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body > div {
+            padding: 15px;
+            margin: 15px;
+            background-color: rgba(173, 255, 47, 0.2);
+
+            .placeholder {
+                background-color: rgba(100, 149, 237, 0.2);
+            }
+            .ghost span {
+                background-color: rgba(123, 104, 238, 0.2);
+            }
+        }
+
+        .c-ellipsis (@fontSize: 14px, @holderFontSize: 50px, @lineHeight: 18px, @lineCount: 3) {
+            .box {
+                position: relative;
+                overflow: hidden;
+                line-height: @lineHeight;
+                max-height: @lineCount * @lineHeight;
+
+                & > div {
+                    position: relative;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                            box-orient: vertical;
+                    -webkit-line-clamp: @lineCount;
+                            line-clamp: @lineCount;
+                    font-size: @holderFontSize;
+                }
+                p {
+                    display: inline;
+                    vertical-align: top;
+                    font-size: @fontSize;
+                }
+                .ghost {
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    width: 100%;
+                    height: 100%;
+
+                    &:before {
+                        content: "";
+                        display: block;
+                        float: right;
+                        width: 50%;
+                        height: 100%;
+                    }
+                    .placeholder {
+                        content: "";
+                        display: block;
+                        float: right;
+                        width: 50%;
+                        height: @lineCount * @lineHeight;
+                    }
+                    span {
+                        position: relative;
+                        float: right;
+                        font-size: @fontSize;
+                        width: @holderFontSize - 10;
+                        height: @lineHeight;
+                        margin-top: -@lineHeight;
+
+                        a {
+                            float: right;
+                        }
+                    }
+                }
+            }
+        }
+        .ellipsis-line2 {
+            .c-ellipsis (12px, 58px, 16px, 2);
+        }
+        .ellipsis-line3 {
+            .c-ellipsis (14px, 66px, 18px, 3);
+        }
+        .ellipsis-line4 {
+            .c-ellipsis (18px, 82px, 24px, 4);
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/less.js/1.7.0/less.min.js"></script>
+</head>
+<body>
+<div class="c-ellipsis ellipsis-line2">
+    <div class="box">
+        <div>
+            <p>常见的双眼皮手术有：切开双眼皮（也称全切双眼皮）、微创双眼皮（也称韩式三点双眼皮）和埋线双眼皮。切开双眼皮适合上眼皮肤松弛、上眼皮下垂（提肌无力）、上眼脂肪过多（鼓泡眼）的人做，它的创伤较大、恢复时间较长也会留一定疤痕但效果永久。埋线双眼皮则适合眼裂长、眼皮无松弛下垂的年轻人，恢复好后完全无疤痕但效果只能维持3-5年。而微创则适合介于这两种情况之间的人，它的创伤比切开小、维持时间比埋线久。</p>
+            <div class="ghost">
+                <div class="placeholder"></div>
+                <span><a href="javascript:;">查看更多</a></span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="c-ellipsis ellipsis-line3">
+    <div class="box">
+        <div>
+            <p>常见的双眼皮手术有：切开双眼皮（也称全切双眼皮）、微创双眼皮（也称韩式三点双眼皮）和埋线双眼皮。切开双眼皮适合上眼皮肤松弛、上眼皮下垂（提肌无力）、上眼脂肪过多（鼓泡眼）的人做，它的创伤较大、恢复时间较长也会留一定疤痕但效果永久。埋线双眼皮则适合眼裂长、眼皮无松弛下垂的年轻人，恢复好后完全无疤痕但效果只能维持3-5年。而微创则适合介于这两种情况之间的人，它的创伤比切开小、维持时间比埋线久。</p>
+            <div class="ghost">
+                <div class="placeholder"></div>
+                <span><a href="javascript:;">查看更多</a></span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="c-ellipsis ellipsis-line4">
+    <div class="box">
+        <div>
+            <p>常见的双眼皮手术有：切开双眼皮（也称全切双眼皮）、微创双眼皮（也称韩式三点双眼皮）和埋线双眼皮。切开双眼皮适合上眼皮肤松弛、上眼皮下垂（提肌无力）、上眼脂肪过多（鼓泡眼）的人做，它的创伤较大、恢复时间较长也会留一定疤痕但效果永久。埋线双眼皮则适合眼裂长、眼皮无松弛下垂的年轻人，恢复好后完全无疤痕但效果只能维持3-5年。而微创则适合介于这两种情况之间的人，它的创伤比切开小、维持时间比埋线久。</p>
+            <div class="ghost">
+                <div class="placeholder"></div>
+                <span><a href="javascript:;">查看更多</a></span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

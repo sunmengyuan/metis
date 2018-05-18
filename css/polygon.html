@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Polygon</title>
+    <style>
+        .box{width: 500px;height: 500px;margin: 50px auto;background-color: red;}
+
+        /* 平滑过渡须裁切点数一致 */
+        .clip-star{-webkit-transition: all 1s ease;transition: all 1s ease;}
+        .clip-star{-webkit-clip-path: polygon(50% 0%, 63% 38%, 100% 38%, 69% 59%, 82% 100%, 50% 75%, 18% 100%, 31% 59%, 0 38%, 37% 38%);}
+        .clip-star:hover{-webkit-clip-path: polygon(50% 0, 80% 20%, 100% 50%, 100% 50%, 80% 80%, 50% 100%, 20% 80%, 0 50%, 0 50%, 20% 20%);background-color: yellow;}
+    </style>
+</head>
+<body>
+<div class="box clip-star"></div>
+</body>
+</html>

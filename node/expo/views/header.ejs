@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <title>Expo</title>
+    <link rel="stylesheet" href="/style/public.css" />
+    <link rel="stylesheet" href="/style/style.css" />
+</head>
+<body>
+<script id="module_dialog" type="text/x-module">
+    <div class="dialog c-mask js_dialog">
+        <div class="c-center">
+            <div class="dialog-message">$message</div>
+            <a href="$href" class="dialog-btn c-block $btnClass">确定</a>
+        </div>
+    </div>
+</script>
+<script>
+    var global = {
+        log_user: "<%= log_user %>"
+    };
+</script>
+<script src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+<script src="/script/main.js"></script>

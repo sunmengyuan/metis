@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clock</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        .canvas{position: fixed;width: 100%;height: 100%;}
+        .clock{width: 250px;height: 250px;}
+    </style>
+</head>
+<body>
+<canvas class="canvas"></canvas>
+<canvas class="clock"></canvas>
+<script src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+<script src="https://cdn.bootcss.com/three.js/r74/three.min.js"></script>
+<script>
+    var sketch = {
+
+        /**
+         * x轴：紫
+         * y轴：蓝
+         * z轴：绿
+         */
+
+        scene: null,
+        camera: null,
+        renderer: null,
+
+        object: null,
+        texture: null,
+
+        do: function () {
+            var _this = this;
+            _this.initThree();
+            _this.initLight();
+            _this.coordinate();
+            _this.setObject();
+            _this.renderScene();
+        },
+        initThree: function () {
+            var _this = this;
+            var $canvas = $('.canvas').get(0);
+            var width = $canvas.clientWidth;
+            var height = $canvas.clientHeight;
+
+            /** 场景 **/
+            var scene = new THREE.Scene();
+
+            /** 相机 **/
+            var camera = new THREE.PerspectiveCamera(45, width / height, 1, 1000);
+            camera.position.set(0, -50, 100);
+            camera.up.set(0, 1, 0);
+            camera.lookAt({x: 0, y: 0, z: 0});
+
+            /** 渲染器 **/
+            var renderer = new THREE.WebGLRenderer({
+                canvas: $canvas,
+                antialias: true // 反锯齿
+            });
+            renderer.setSize(width, height);
+            renderer.setClearColor(0x000000);
+
+            _this.scene = scene;
+            _this.camera = camera;
+            _this.renderer = renderer;
+        },
+        initLight: function () {
+            var _this = this;
+            var spot = new THREE.SpotLight(0xFFFF00, 1, 100, Math.PI / 3);
+            var directional = new THREE.DirectionalLight(0xF8F8FF);
+
+            /** 聚光灯 **/
+            spot.position.set(0, 0, 50);
+            spot.target.position.set(0, 0, 0);
+
+            /** 平行光 **/
+            directional.position.set(-50, -50, 50);
+
+            _this.scene.add(spot);
+            _this.scene.add(directional);
+        },
+        coordinate: function () {
+            var _this = this;
+            var cooX = new THREE.Vector3(50, 0, 0);
+            var cooY = new THREE.Vector3(0, 50, 0);
+            var cooZ = new THREE.Vector3(0, 0, 50);
+            var drawAxis = function (point, color) {
+                var origin = new THREE.Vector3(0, 0, 0);
+                var geometry = new THREE.Geometry();
+                var material = new THREE.LineBasicMaterial({
+                    color: color
+                });
+                geometry.vertices.push(origin, point);
+                _this.scene.add(new THREE.Line(geometry, material, THREE.LinePieces));
+            };
+
+            // x 轴
+            drawAxis(cooX, 0x4B0082);
+            // y轴
+            drawAxis(cooY, 0x0000FF);
+            // z轴
+            drawAxis(cooZ, 0x00FA9A);
+        },
+        setObject: function () {
+            var _this = this;
+            var clock = $('.clock').get(0);
+            var texture = new THREE.Texture(clock);
+            var geometry = new THREE.CubeGeometry(50, 50, 50);
+            var material = new THREE.MeshPhongMaterial({
+                map: texture
+            });
+            var cube = new THREE.Mesh(geometry, material);
+
+            cube.position.set(0, 0, 0);
+
+            _this.texture = texture;
+            _this.object = cube;
+            _this.scene.add(cube);
+        },
+        renderScene: function () {
+            var _this = sketch;
+
+            _this.object.rotation.x += 0.01;
+            _this.object.rotation.y += 0.01;
+            _this.object.rotation.z += 0.01;
+
+            _this.texture.needsUpdate = true;
+            _this.renderer.render(_this.scene, _this.camera);
+
+            requestAnimationFrame(_this.renderScene);
+        }
+    };
+
+
+    /** 绘制钟表 **/
+    var clock = {
+
+        width: 0,
+        height: 0,
+        context: null,
+
+        do: function () {
+            var _this = this;
+
+            _this.initCanvas();
+            _this.initContext();
+            _this.drawClock();
+            _this.updateClock();
+        },
+        initCanvas: function () {
+            var _this = this;
+            var canvas = $('.clock').get(0);
+            var context = canvas.getContext('2d');
+            var ratio = window.devicePixelRatio || 1;
+            var width = canvas.clientWidth;
+            var height = canvas.clientHeight;
+
+            canvas.width = width * ratio;
+            canvas.height = height * ratio;
+            context.scale(ratio, ratio);
+
+            _this.width = width;
+            _this.height = height;
+            _this.context = context;
+        },
+        initContext: function () {
+            var _this = this;
+
+            // 背景色
+            _this.context.fillStyle = '#FFF8DC';
+            _this.context.rect(0, 0, _this.width, _this.width);
+            _this.context.fill();
+
+            _this.context.lineWidth = 5;
+            _this.context.fillStyle = 'black';
+            _this.context.strokeStyle = 'blueviolet';
+        },
+        drawClock: function () {
+            var _this = this;
+            var centerX = _this.width / 2;
+            var centerY = _this.width / 2;
+
+            /** 时间 **/
+            var date = new Date();
+            var hour = date.getHours();
+            var minute = date.getMinutes();
+            var second = date.getSeconds();
+
+            // 时
+            var angleH = hour * Math.PI / 6 - Math.PI / 2;
+            var hourDX = 45 * Math.cos(angleH);
+            var hourDY = 45 * Math.sin(angleH);
+            // 分
+            var angleM = minute * Math.PI / 30 - Math.PI / 2;
+            var minuteDX = 70 * Math.cos(angleM);
+            var minuteDY = 70 * Math.sin(angleM);
+            // 秒
+            var angleS = second * Math.PI / 30 - Math.PI / 2;
+            var secondDX = 80 * Math.cos(angleS);
+            var secondDY = 80 * Math.sin(angleS);
+
+            /** 表盘 **/
+            _this.context.save();
+            _this.context.translate(centerX, centerY);
+            for (var i = 0;i < 12;i++) {
+                // 表盘
+                _this.context.beginPath();
+                _this.context.arc(0, 0, 100, 0, Math.PI / 6);
+                _this.context.stroke();
+                // 刻度
+                _this.context.beginPath();
+                _this.context.rect(0, 80, 2, 10);
+                _this.context.fill();
+
+                _this.context.rotate(Math.PI / 6);
+            }
+            _this.context.restore();
+
+            /** 表针 **/
+            var drawArm = function (dx, dy) {
+                _this.context.beginPath();
+                _this.context.moveTo(centerX, centerY);
+                _this.context.lineTo(centerX + dx, centerY + dy);
+                _this.context.stroke();
+            };
+
+            // 时针
+            drawArm(hourDX, hourDY);
+            // 分针
+            drawArm(minuteDX, minuteDY);
+            // 秒针
+            _this.context.lineWidth = 2;
+            drawArm(secondDX, secondDY);
+            // 衔接点
+            _this.context.beginPath();
+            _this.context.arc(centerX, centerY, 5, 0, 2 * Math.PI);
+            _this.context.fill();
+        },
+        updateClock: function () {
+            var _this = this;
+            var interval = setInterval(function () {
+                _this.context.clearRect(0, 0, _this.width, _this.height);
+                _this.initContext();
+                _this.drawClock();
+            }, 1000);
+        }
+    };
+
+    clock.do();
+    sketch.do();
+</script>
+</body>
+</html>

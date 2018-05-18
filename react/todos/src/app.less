@@ -1,0 +1,140 @@
+/* common */
+*{margin: 0;padding: 0;word-break: break-all;}
+body{text-align: left;font-family: "\5FAE\8F6F\96C5\9ED1", "\5B8B\4F53", Arial, Verdana;}
+h1, h2, h3, h4, h5, h6{font-weight: normal;}
+ul, ol, li{list-style: none;}
+template{display: block;}
+table{border-collapse: collapse;border-spacing: 0;}
+input, textarea, button{border: none;resize: none;outline: none;}
+button{background-color: transparent;}
+em, i{font-style: normal;}
+a{text-decoration: none;}
+img{display: block;width: 100%;}
+/* clear */
+.c-fix:after{content: "";display: block;height: 0;clear: both;visibility: hidden;}
+/* display */
+.c-block{display: block;}
+.c-inline{display: inline-block;}
+.c-hidden{display: none;}
+/* layer */
+.c-mask{position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: 100;background-color: rgba(0, 0, 0, 0.5);display: none;}
+.c-header{position: fixed;left: 0;top: 0;width: 100%;z-index: 10;box-sizing: border-box;}
+.c-footer{position: fixed;left: 0;bottom: 0;width: 100%;z-index: 10;box-sizing: border-box;}
+/* center */
+.c-center{top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);}
+.c-vertical{top: 50%;-webkit-transform: translate(0, -50%);transform: translate(0, -50%);}
+.c-horizontal{left: 50%;-webkit-transform: translate(-50%, 0);transform: translate(-50%, 0);}
+/* ellipsis */
+.ellipsis-row1{overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.ellipsis-row2{overflow: hidden;text-overflow: ellipsis;-webkit-line-clamp: 2;-webkit-box-orient: vertical;display: -webkit-box;}
+.ellipsis-row3{overflow: hidden;text-overflow: ellipsis;-webkit-line-clamp: 3;-webkit-box-orient: vertical;display: -webkit-box;}
+
+@weakGrey: #EEE;
+@middleGrey: #CCC;
+@strongGrey: #666;
+@mainGreen: #3EB708;
+@mainRed: #FF6767;
+
+template {
+    width: 500px;
+    margin: 80px auto;
+}
+h1 {
+    font-size: 50px;
+    color: @mainGreen;
+    text-align: center;
+}
+.todos-mn {
+    border: 1px solid @weakGrey;
+    box-shadow: 2px 2px 5px @weakGrey;
+    margin: 30px auto;
+
+    .todos-input {
+        border-bottom: 1px solid @weakGrey;
+
+        input {
+            width: 100%;
+            font-size: 22px;
+            line-height: 44px;
+            color: @strongGrey;
+            padding: 5px 15px;
+            box-sizing: border-box;
+
+            &::-webkit-input-placeholder {
+                color: @middleGrey;
+            }
+        }
+    }
+    .todos-lst {
+        li {
+            font-size: 18px;
+            line-height: 30px;
+            color: @strongGrey;
+            border-bottom: 1px solid @weakGrey;
+            padding: 10px 45px 10px 40px;
+            position: relative;
+            cursor: pointer;
+
+            span {
+                position: absolute;
+
+                &:first-child {
+                    width: 16px;
+                    height: 16px;
+                    border: 1px solid @middleGrey;
+                    border-radius: 50%;
+                    top: 16px;
+                    left: 15px;
+                }
+                &:last-child {
+                    font-size: 12px;
+                    line-height: 30px;
+                    color: @mainRed;
+                    top:10px;
+                    right: 15px;
+                }
+            }
+            &.done {
+                text-decoration: line-through;
+
+                span:first-child {
+                    border-color: @mainGreen;
+                    background-color: @mainGreen;
+                }
+            }
+            &:hover {
+                span:last-child {
+                    display: block;
+                }
+            }
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+    }
+}
+.todos-ctrls {
+    text-align: center;
+
+    a {
+        display: inline-block;
+        font-size: 14px;
+        line-height: 30px;
+        color: @strongGrey;
+        border: 1px solid @middleGrey;
+        padding: 0 15px;
+        margin: 0 1px;
+
+        &:first-child {
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+        }
+        &:last-child {
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+        &:hover {
+            background-color: @middleGrey;
+        }
+    }
+}

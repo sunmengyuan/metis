@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Comet</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        body{background-color: #000;}
+        .ctrl{position: fixed;top: 20px;left: 20px;}
+        .ctrl, .ctrl input{font-size: 18px;line-height: 32px;color: #FFCE84;}
+        .ctrl input{width: 40px;text-align: center;padding: 0 5px;margin-right: 5px;border: 1px solid #7B6C54;border-radius: 3px;background-color: transparent;}
+        svg{display: block;width: 250px;height: 250px;margin: 100px auto;}
+        path{fill: none;stroke: #FFF;stroke-width: 4;stroke-linecap: round;stroke-dasharray: 628.4073486328125;}
+    </style>
+</head>
+<body>
+<svg>
+    <defs>
+        <pattern id="tailPattern" width="100%" height="100%" patternContentUnits="objectBoundingBox">
+            <image width="1" height="1" xlink:href="http://oz54e50y4.bkt.clouddn.com/tail.png" />
+        </pattern>
+    </defs>
+    <path id="circlePath" d="M 125 25 a 100 100 0 0 1 0 200 a 100 100 0 0 1 0 -200 Z">
+        <animate id="circleAnimate" attributeName="stroke-dashoffset" from="628.4073486328125" to="0" dur="3s" repeatDur="" fill="freeze" begin="indefinite" restart="whenNotActive" />
+    </path>
+    <g>
+        <circle cx="0" cy="0" r="8" fill="url(#tailPattern)">
+            <animateMotion id="tailAnimate" path="M 125 25 a 100 100 0 0 1 0 200 a 100 100 0 0 1 0 -200 Z" dur="3s" repeatDur="" fill="freeze" rotate="auto" begin="indefinite" restart="whenNotActive" />
+        </circle>
+    </g>
+</svg>
+<div class="ctrl">旋转到哪里？<input id="percentInput" type="text" value="100" autofocus="autofocus" />%（敲回车看效果）</div>
+<script src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+<script>
+    var $circlePath = $('#circlePath');
+    var circlePathLength = $circlePath[0].getTotalLength();
+    console.log(circlePathLength);
+
+    var totalTime = 3;
+    var $circleAnimate = $('#circleAnimate');
+    var $tailAnimate = $('#tailAnimate');
+    var $percentInput = $('#percentInput');
+    var runAnimate = function () {
+        var percent = $percentInput.val() / 100;
+        var durTime = totalTime * percent;
+        $circleAnimate[0].setAttribute('repeatDur', durTime + 's');
+        $tailAnimate[0].setAttribute('repeatDur', durTime + 's');
+        $circleAnimate[0].beginElement();
+        $tailAnimate[0].beginElement();
+    };
+
+    runAnimate();
+    $('body').on('keydown', function (e) {
+        (e.keyCode == '13') && runAnimate();
+    });
+</script>
+</body>
+</html>

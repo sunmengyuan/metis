@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <title>Drag</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        .canvas{position: fixed;width: 100%;height: 100%;}
+    </style>
+</head>
+<body>
+<canvas class="canvas"></canvas>
+<script src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+<script src="https://cdn.bootcss.com/touchjs/0.2.14/touch.min.js"></script>
+<script>
+    var sketch = {
+
+        ratio: null,
+        canvas: null,
+        context: null,
+
+        isDragging: false,
+        draggedItem: null,
+        items: [
+            {x: 100, y: 100, r: 50, bR: 10, n: 5},
+            {x: 180, y: 180, r: 60, bR: 20, n: 3},
+            {x: 200, y: 80, r: 30, bR: 5, n: 7},
+            {x: 100, y: 300, r: 40, bR: 10, n: 6},
+            {x: 250, y: 320, r: 60, bR: 10, n: 10}
+        ],
+
+        init: function () {
+            var _this = this;
+
+            _this.initCanvas();
+            _this.initContext();
+            _this.drawItem();
+            _this.dragAction();
+        },
+        initCanvas: function () {
+            var _this = this;
+            var canvas = $('.canvas').get(0);
+            var context = canvas.getContext('2d');
+            var ratio = window.devicePixelRatio || 1;
+
+            canvas.width = canvas.offsetWidth * ratio;
+            canvas.height = canvas.offsetHeight * ratio;
+            context.scale(ratio, ratio);
+
+            _this.ratio = ratio;
+            _this.canvas = canvas;
+            _this.context = context;
+        },
+        initContext: function () {
+            var _this = this;
+
+            _this.context.lineWidth = 2;
+            _this.context.fillStyle = 'mediumslateblue';
+            _this.context.strokeStyle = 'blueviolet';
+        },
+        drawItem: function (coo) {
+            var _this = this;
+            var length = _this.items.length;
+
+            // 重绘
+            for (var i = 0;i < length;i++) {
+                var _self = _this.items[i];
+                _this.drawPolygon(_self);
+
+                // 拖拽判别
+                if (coo) {
+                    var isInPath = _this.context.isPointInPath(_this.ratio * coo.x, _this.ratio * coo.y);
+                    if (isInPath) {
+                        _this.isDragging = true;
+                        _this.draggedItem = i;
+                    }
+                }
+            }
+        },
+        dragAction: function () {
+            var _this = this;
+            var flag = false;
+            var $canvas = $(_this.canvas);
+            var width = _this.canvas.width;
+            var height = _this.canvas.height;
+            var redraw = function (e) {
+                if (flag && _this.isDragging) {
+                    var dragged = _this.items[_this.draggedItem];
+                    var newItem = {
+                        x: e.pageX,
+                        y: e.pageY,
+                        r: dragged.r,
+                        bR: dragged.bR,
+                        n: dragged.n
+                    };
+                    _this.items.splice(_this.draggedItem, 1, newItem);
+                    _this.context.clearRect(0, 0, width, height);
+                    _this.drawItem();
+                }
+            };
+            var trigger = function (e) {
+                var coo = {x: e.pageX, y: e.pageY};
+
+                flag = true;
+                _this.drawItem(coo);
+            };
+
+            $canvas.on({
+                'mousedown': function (e) {
+                    trigger(e);
+                },
+                'touchstart': function (e) {
+                    trigger(e.originalEvent.touches[0]);
+                }
+            });
+            $canvas.on({
+                'mouseup': function () {
+                    flag = false;
+                    _this.isDragging = false;
+                },
+                'touchend': function () {
+                    flag = false;
+                    _this.isDragging = false;
+                }
+            });
+            $canvas.on({
+                'mousemove': function (e) {
+                    redraw(e);
+                },
+                'touchmove': function (e) {
+                    redraw(e.originalEvent.touches[0]);
+                }
+            });
+        },
+        drawPolygon: function (opt) {
+            var _this = this;
+
+            var angle = Math.PI * 2 / opt.n;
+            var cos = Math.cos(angle / 2);
+            var sin = Math.sin(angle / 2);
+            var tan = sin / cos;
+
+            // 圆角起点及终点
+            var startX = opt.bR * sin;
+            var startY = opt.r - opt.bR * cos * Math.pow(tan, 2);
+            var endX = -startX;
+            var endY = startY;
+
+            _this.context.save();
+            // 中点变换
+            _this.context.translate(opt.x, opt.y);
+
+            _this.context.beginPath();
+            _this.context.moveTo(startX, startY);
+            for (var i = 0;i < opt.n;i++) {
+                _this.context.quadraticCurveTo(0, opt.r, endX, endY);
+                // 旋转画布
+                _this.context.rotate(angle);
+                _this.context.lineTo(startX, startY);
+            }
+            _this.context.closePath();
+            _this.context.stroke();
+            _this.context.fill();
+            _this.context.restore();
+        }
+    };
+
+    sketch.init();
+</script>
+</body>
+</html>

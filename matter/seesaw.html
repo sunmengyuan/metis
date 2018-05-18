@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Seesaw</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        canvas{position: fixed;top: 0;left: 0;width: 100%;height: 100%;}
+    </style>
+</head>
+<body>
+<script src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+<script src="https://cdn.bootcss.com/matter-js/0.10.0/matter.min.js"></script>
+<script>
+    var ratio = window.devicePixelRatio; // 设备像素比
+    var matter = {
+
+        object: [],
+
+        do: function () {
+            var _this = this;
+            _this.setObject();
+            _this.runEngine();
+            _this.initCanvas();
+        },
+        setObject: function () {
+            var _this = this;
+            var width = window.innerWidth;
+            var height = window.innerHeight;
+
+            var ground = Matter.Bodies.rectangle(width / 2, height - 5, width, 10, {isStatic: true});
+            var ball = Matter.Bodies.circle(width / 4 + 30, -200, 30, {density: 1.0});
+            var stack = Matter.Composites.stack(width * 3 / 4 - 150, height - 170, 5, 2, 0, 0, function(x, y) {
+                return Matter.Bodies.rectangle(x, y, 30, 30);
+            });
+            _this.object.push(ground, ball, stack);
+
+            // 跷跷板
+            var board = Matter.Bodies.rectangle(width / 2, height - 100, width * 0.5, 20);
+            var handleA = Matter.Constraint.create({
+                pointA: {x: width / 2 - 25, y: height - 10},
+                bodyB: board
+            });
+            var handleB = Matter.Constraint.create({
+                pointA: {x: width / 2 + 25, y: height - 10},
+                bodyB: board
+            });
+            _this.object.push(board, handleA, handleB);
+        },
+        runEngine: function () {
+            var _this = this;
+            var subject = Matter.Engine.create(document.body);
+            var mouseConstraint = Matter.MouseConstraint.create(subject);
+
+            // 引擎属性
+            subject.render.options.wireframes = false;
+            mouseConstraint.mouse.pixelRatio = ratio;
+
+            Matter.World.add(subject.world, mouseConstraint);
+            Matter.World.add(subject.world, _this.object);
+            Matter.Engine.run(subject);
+        },
+        initCanvas: function () {
+            var canvas = $('canvas').get(0);
+            var context = canvas.getContext('2d');
+
+            canvas.width = canvas.offsetWidth * ratio;
+            canvas.height = canvas.offsetHeight * ratio;
+            context.scale(ratio, ratio);
+        }
+    };
+
+    matter.do();
+</script>
+</body>
+</html>

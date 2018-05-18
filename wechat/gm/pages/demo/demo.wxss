@@ -1,0 +1,74 @@
+.service-list1 {
+    padding: 30rpx;
+    margin: -10rpx;
+}
+.service-list1 .item {
+    float: left;
+    width: 50%;
+    padding: 10rpx;
+    box-sizing: border-box;
+}
+.service-list1 .bio {
+    padding: 20rpx;
+    background-color: #FFF;
+}
+.service-list1 .desc {
+    font-size: 24rpx;
+    line-height: 32rpx;
+    min-height: 64rpx;
+    margin-bottom: 20rpx;
+}
+.service-list1 .price {
+    float: left;
+    font-size: 36rpx;
+    line-height: 40rpx;
+    color: #FF7690;
+}
+.service-list1 .price:first-letter {
+    font-size: 24rpx;
+    vertical-align: middle;
+}
+.service-list1 .appoint {
+    float: right;
+    font-size: 24rpx;
+    line-height: 42rpx;
+    color: #999;
+}
+
+.service-list2 .item {
+    position: relative;
+    min-height: 180rpx;
+    padding: 20rpx 30rpx 20rpx 230rpx;
+    margin: 20rpx 0;
+    background-color: #FFF;
+}
+.service-list2 .gm-nothumb {
+    position: absolute;
+    left: 20rpx;
+    top: 20rpx;
+    width: 180rpx;
+    padding-bottom: 180rpx;
+}
+.service-list2 .desc {
+    width: 100%;
+    font-size: 30rpx;
+    line-height: 40rpx;
+    min-height: 80rpx;
+    margin-bottom: 50rpx;
+}
+.service-list2 .price {
+    float: left;
+    font-size: 38rpx;
+    line-height: 40rpx;
+    color: #FF7690;
+}
+.service-list2 .price:first-letter {
+    font-size: 24rpx;
+    vertical-align: middle;
+}
+.service-list2 .appoint {
+    float: right;
+    font-size: 26rpx;
+    line-height: 44rpx;
+    color: #999;
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220">
+    <defs>
+        <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="60%" id="tail">
+            <stop stop-opacity="1" stop-color="#FD7991" offset="30%"/>
+            <stop stop-opacity="0.5" stop-color="#fD97AA" offset="40%"/>
+            <stop stop-opacity="0" stop-color="#FECBD4" offset="80%"/>
+        </radialGradient>
+    </defs>
+    <path d="M 110 10 a 100 100 0 0 1 0 200 a 100 100 0 0 1 0 -200 Z" fill="none" stroke="#FD7991" stroke-width="4" stroke-linecap="round" stroke-dasharray="628.4073486328125">
+        <animate attributeName="stroke-dashoffset" from="628.4073486328125" to="0" dur="2s" repeatCount="indefinite" />
+    </path>
+    <g>
+        <rect x="-10" y="-10" width="20" height="20" fill="url(#tail)">
+            <animateMotion path="M 110 10 a 100 100 0 0 1 0 200 a 100 100 0 0 1 0 -200 Z" rotate="auto" dur="2s" repeatCount="indefinite" />
+        </rect>
+    </g>
+</svg>

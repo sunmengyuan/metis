@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动画队列</title>
+    <style>
+        .btn, .element{margin: 50px auto;}
+        .btn a{display: inline-block;line-height: 30px;font-size: 16px;color: #333;border-radius: 4px;padding: 0 20px;border: 1px solid #666;margin: 0 10px;text-decoration: none;}
+        .element{width: 100px;height: 100px;background-color: red;position: relative;}
+        .yellow{background-color: yellow;}
+    </style>
+</head>
+<body>
+<div class="btn"><a href="javascript:;" class="start">start</a><a href="javascript:;" class="stop">stop</a></div>
+<div class="element"></div>
+
+<script src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+<script>
+    var $item = $('.element');
+
+    $('.start').click(function () {
+        $item.animate({
+            left: '+=200'
+        }, 2000);
+
+        // addClass 继 animate 后执行
+        $item.queue(function () {
+            var _this = $(this);
+            _this.addClass('yellow');
+            _this.dequeue();
+        });
+
+        $item.animate({
+            left: '-=200'
+        }, 2000);
+    });
+
+    $('.stop').click(function () {
+        $item.clearQueue();
+    });
+</script>
+</body>
+</html>

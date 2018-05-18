@@ -1,0 +1,17 @@
+{
+    "name": "zone",
+    "version": "1.0.0",
+    "author": "sunmy <sunmy_meow@sina.com>",
+    "private": true,
+    "scripts": {
+        "start": "node ./bin/www"
+    },
+    "dependencies": {
+        "ejs": "~2.3.3",
+        "express": "~4.13.1",
+        "mongoose": "~4.4.14",
+        "formidable": "~1.0.17",
+        "body-parser": "~1.15.0",
+        "cookie-parser": "~1.4.1"
+    }
+}

@@ -1,0 +1,55 @@
+<%- include ../header %>
+<section class="profile-info expo-bg">
+    <img src="<%= userinfo.portrait || '/img/default_portrait.jpg' %>" class="c-block" />
+    <h3><%= userinfo.username %></h3>
+    <span><%= userinfo.sex %></span><span><%= userinfo.tel %></span><span><%= userinfo.qq %></span>
+    <div class="profile-intro"><%= userinfo.intro || '还咩有自我评价哦~' %></div>
+
+    <% if (is_author) { %>
+    <form enctype="multipart/form-data" id="form_portrait" class="c-horizontal">
+        <input type="file" id="portrait" name="portrait" class="js_portrait" />
+    </form>
+    <div class="log-ctrl">
+        <a href="javascript:;" class="js_exit">退出</a><a href="javascript:;" class="js_logout">注销</a>
+    </div>
+    <% } %>
+</section>
+
+<section class="diaries-lst">
+    <ul class="js_diaries"></ul>
+    <span class="expo-loading js_loading">正在加载...</span>
+    <button class="js_loadmore"></button>
+</section>
+<%- include modules/m-diary.ejs %>
+
+<div class="c-hidden c-mask">
+    <div class="edit-board c-footer js_edit_board">
+        <form id="form_userinfo" autocomplete="off">
+            <input type="text" id="username" name="username" placeholder="*用户名" value="<%= userinfo.username %>" />
+            <input type="text" id="sex" name="sex" placeholder="*性别" value="<%= userinfo.sex %>" />
+            <input type="text" id="tel" name="tel" placeholder="*电话" value="<%= userinfo.tel %>" />
+            <input type="text" id="qq" name="qq" placeholder="*QQ" value="<%= userinfo.qq %>" />
+            <input type="text" id="intro" name="intro" placeholder="还咩有自我评价哦~" value="<%= userinfo.intro %>" />
+        </form>
+        <button class="js_userinfo">提交</button>
+        <a href="javascript:;" class="js_cancel">取消</a>
+    </div>
+</div>
+
+<% if (is_author) { %>
+<a href="/diary/publish" class="btn-publish c-block">+</a>
+<a href="javascript:;" class="btn-edit c-block js_edit_userinfo">✎</a>
+<% } %>
+
+<a href="javascript:;" class="expo-back c-block js_back"><</a>
+
+<script id="module_empty" type="text/x-module">
+    <div class="expo-empty">日记本空空的哒~</div>
+</script>
+<script>
+    global.page = {
+        cur_user: "<%= cur_user %>"
+    };
+</script>
+<script src="/script/profile.js"></script>
+<%- include ../footer %>

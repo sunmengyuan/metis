@@ -1,0 +1,48 @@
+<%- include ../header %>
+<div class='chatroom-header c-header'>
+    <div>
+        <div class='ctrls c-hlt c-fix'><a href='javascript:;' class='js_exit'></a><a href='/'></a><a href='/edit/myinfo'></a><a href='https://github.com/sunmengyuan/metis/tree/master/node/chat' target='_blank'></a></div>
+        <ul class='js_news'></ul>
+    </div>
+</div>
+<% if (users.length) { %>
+<section class='m-members'>
+    <ul class='js_members'>
+        <% users.forEach(function (user) { %>
+        <li id='user_<%= user.id %>' class='<%= user.status %> ellipsis-row1 js_user' data-info='<%= JSON.stringify(user) %>'><span class='c-inline'></span><a href='javascript:;'><%= user.nickname %></a></li>
+        <% }) %>
+    </ul>
+</section>
+<% } %>
+<section class='m-chat'>
+    <ul class='chat-message js_message'></ul>
+    <div class='c-footer'>
+        <div class='chat-send'>
+            <input type='text' class='js_input' />
+            <a href='javascript:;' class='c-frt js_send'>发送</a>
+        </div>
+    </div>
+</section>
+<script id='module_news' type='text/x-module'>
+    <li id='$id'><span>$nickname</span>$news</li>
+</script>
+<script id='module_message' type='text/x-module'>
+    <li class='$view c-fix'><span>$nickname</span><p>$message<em></em></p></li>
+</script>
+<script id='module_member' type='text/x-module'>
+    <li id='user_$id' class='$status ellipsis-row1 js_user' data-info='$info'><span class='c-inline'></span><a href='javascript:;'>$nickname</a></li>
+</script>
+<script id='module_userinfo' type='text/x-module'>
+    <div class="userinfo c-mask js_mask">
+        <div class='c-center'>
+            <h3>$nickname</h3>
+            <div>性别：$sex</div>
+            <div>TEL：$tel</div>
+            <div>QQ：$qq</div>
+            <p>$intro</p>
+        </div>
+    </div>
+</script>
+<script src='/script/log.js'></script>
+<script src='/script/chat.js'></script>
+<%- include ../footer %>

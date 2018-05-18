@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Return</title>
+    <style>
+        a{text-decoration: none;display: inline-block;padding: 0 15px;line-height: 30px;font-size: 18px;color: #333;border: 1px solid #333;border-radius: 3px;}
+    </style>
+</head>
+<body>
+<a href="index.html">链接</a>
+<script src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+<script>
+    /** example 1 **/
+    $('a').on('click', function () {
+        console.log('success');
+        return;
+        console.log('failed');
+    });
+    // success 跳转
+
+//    /** example 2 **/
+//    $('a').on('click', function () {
+//        console.log('success');
+//        return false;
+//        console.log('failed');
+//    });
+//    // success 不跳转
+//
+//    /** example 3 **/
+//    $('a').on('click', function () {
+//        console.log('success');
+//        return true;
+//        console.log('failed');
+//    });
+//    // success 跳转
+</script>
+</body>
+</html>

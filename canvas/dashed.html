@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashed</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        .canvas{position: fixed;width: 100%;height: 100%;}
+    </style>
+</head>
+<body>
+<canvas class="canvas"></canvas>
+<script src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+<script>
+    var sketch = {
+
+        context: null,
+
+        init: function () {
+            var _this = this;
+
+            _this.initCanvas();
+            _this.initContext();
+        },
+        initCanvas: function () {
+            var _this = this;
+            var canvas = $('.canvas').get(0);
+            var context = canvas.getContext('2d');
+            var ratio = window.devicePixelRatio || 1;
+            var width = canvas.offsetWidth;
+            var height = canvas.offsetHeight;
+
+            canvas.width = width * ratio;
+            canvas.height = height * ratio;
+            context.scale(ratio, ratio);
+
+            _this.context = context;
+        },
+        initContext: function () {
+            var _this = this;
+
+            _this.context.lineWidth = 2;
+            _this.context.fillStyle = 'lightblue';
+            _this.context.strokeStyle = 'blueviolet';
+        },
+        drawDashed: function (x1, y1, x2, y2, l) {
+            var _this = this;
+            var dx = Math.abs(x1 - x2);
+            var dy = Math.abs(y1 - y2);
+            var length = Math.sqrt(dx * dx + dy * dy); // 虚线长
+            var num = Math.floor(length / l); // 虚线段数
+
+            for (var i = 0;i < num;i++) {
+                // 偶数起点，奇数终点
+                if (i % 2 == 0) {
+                    _this.context.beginPath();
+                    // (dx / num) 浮点型 >= l 整型
+                    _this.context.moveTo(x1 + (dx / num) * i, y1 + (dy / num) * i);
+                } else {
+                    _this.context.lineTo(x1 + (dx / num) * i, y1 + (dy / num) * i);
+                    _this.context.stroke();
+                }
+            }
+        }
+    };
+
+    /** 原型方法 **/
+    CanvasRenderingContext2D.prototype.dashed = function (x1, y1, x2, y2, l) {
+        var dx = Math.abs(x1 - x2);
+        var dy = Math.abs(y1 - y2);
+        var length = Math.sqrt(dx * dx + dy * dy);
+        var num = Math.floor(length / l);
+
+        for (var i = 0;i < num;i++) {
+            if (i % 2 == 0) {
+                this.beginPath();
+                this.moveTo(x1 + (dx / num) * i, y1 + (dy / num) * i);
+            } else {
+                this.lineTo(x1 + (dx / num) * i, y1 + (dy / num) * i);
+                this.stroke();
+            }
+        }
+    };
+
+    /**
+     * sketch.drawDashed(startX, startY, endX, endY, dashedLength);
+     * sketch.context.dashed(startX, startY, endX, endY, dashedLength);
+     */
+    sketch.init();
+    sketch.drawDashed(50, 50, 50, 200, 2);
+    sketch.context.dashed(50, 50, 100, 200, 5);
+</script>
+</body>
+</html>

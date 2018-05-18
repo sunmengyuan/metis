@@ -1,0 +1,11 @@
+{
+  "pages": [
+    "pages/welcome/welcome",
+    "pages/loading/loading",
+    "pages/game/game"
+  ],
+  "window": {
+    "navigationBarTitleText": "调制你的专属鸡尾酒"
+  },
+  "debug": true
+}

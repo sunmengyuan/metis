@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Table</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        .table {
+            display: table;
+        }
+        .thead {
+            display: table-header-group;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        .tbody {
+            display: table-row-group;
+        }
+        .tr {
+            display: table-row;
+        }
+        .col1, .th, .td {
+            display: table-cell;
+            vertical-align: middle;
+            padding: 20px;
+            border-right: 1px solid #F0F0F0;
+            border-bottom: 1px solid #F0F0F0;
+            box-sizing: border-box;
+        }
+        .thead .col1, .th {
+            height: 50px;
+            min-height: 50px;
+        }
+        .th, .td {
+            width: 200px;
+            min-width: 200px;
+        }
+        .th, .tbody .col1 {
+            font-size: 16px;
+            text-align: center;
+            color: #999;
+        }
+        .td {
+            font-size: 14px;
+            text-align: left;
+            color: #666;
+        }
+        .td.blue {
+            background-color: #F6FCFE;
+        }
+        .col1 {
+            width: 120px;
+            min-width: 120px;
+        }
+        .table1 .thead {
+            background-color: #FFF;
+        }
+        .table2 {
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        .table2 .th, .table2 .td, .table2 .td.blue {
+            color: transparent;
+            border-color: transparent;
+            background-color: transparent;
+        }
+        .table2 .col1 {
+            background-color: #FFF;
+        }
+        .thead-holder {
+            height: 63px;
+        }
+    </style>
+</head>
+<body>
+<section class="container"></section>
+<script src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+<script src="https://oij8a9ql4.bkt.clouddn.com/tmpl.min.js"></script>
+<script type="text/x-tmpl" id="table">
+    {% for (var i=1; i<3; i++) { %}
+    <div class="table table{%=i%}">
+        <div class="thead">
+            <div class="tr">
+                <div class="col1"></div>
+                {% for (var item in o.items) { %}
+                <div class="th">{%=o.items[item].title%}</div>
+                {% } %}
+            </div>
+        </div>
+        <div class="thead-holder"></div>
+        <div class="tbody">
+            {% for (var prop in o.props) { %}
+            <div class="tr">
+                <div class="col1">{%=o.props[prop]%}</div>
+                {% for (var item in o.items) { %}
+                <div class="td {% if (item%2 == 0) { %}blue{% } %}">{%=o.items[item].props[prop]%}</div>
+                {% } %}
+            </div>
+            {% } %}
+        </div>
+    </div>
+    {% } %}
+</script>
+<script>
+var main = {
+    data: {
+        props: [],
+        items: []
+    },
+    curX: 0,
+    curY: 0,
+    do: function () {
+        this.createData();
+        this.scrollEvent();
+        $('.container').append(tmpl('table', this.data));
+        $('.thead-holder').height($('.table1 .thead').height());
+    },
+    createData: function () {
+        var itemCount = 30;
+        var propCount = 50;
+        for (var i = 1;i <= itemCount;i++) {
+            var item = {
+                title: '',
+                props: []
+            };
+            item.title = '项目' + i;
+            for (var j = 1;j <= propCount;j++) {
+                ((i == 2) && (j == 3)) || ((i == 4) && (j == 5))
+                    ? item.props.push('我是一段很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长的文本')
+                    : item.props.push(item.title + '属性' + j);
+            }
+            this.data.items.push(item);
+        }
+        for (var k = 1;k <= propCount;k++) {
+            this.data.props.push('属性' + k);
+        }
+    },
+    scrollEvent: function () {
+        var _this = this;
+        $(window).on('scroll', function () {
+            var scrollX = window.scrollX;
+            var scrollY = window.scrollY;
+            Math.abs(_this.curX - scrollX) && $('.table1 .thead').css('left', -scrollX);
+            Math.abs(_this.curY - scrollY) && $('.table2').css('top', -scrollY);
+            _this.curX = scrollX;
+            _this.curY = scrollY;
+        });
+    }
+};
+main.do();
+</script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <title>Drawing</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        ul{list-style: none;}
+        a{text-decoration: none;}
+        .c-fix:after{content: "";display: block;height: 0;clear: both;visibility: hidden;}
+        .c-fix{zoom: 1;display: block;}
+
+        .canvas{position: fixed;width: 100%;height: 100%;}
+        .control{padding: 30px;width: 100%;position: fixed;top: 0;left: 0;box-sizing: border-box;}
+
+        .type ul{margin: -5px -7px;}
+        .type li{float: left;margin: 5px 7px;}
+        .type a{line-height: 30px;padding: 0 15px;border-radius: 3px;display: inline-block;font-size: 20px;color: #F3F0F0;text-shadow: 0 0 1px #333;background-color: #AFAFAF;border: 1px solid #989898;}
+
+        .style{margin-top: 20px;}
+        .style li{float: left;width: 100%;margin: 7px 0;}
+        .style span, .style input{display: inline-block;vertical-align: middle;line-height: 24px;}
+        .style input{font-size: 12px;padding: 0 5px;width: 150px;outline: none;}
+        .style span{font-size: 14px;color: #666;padding-right: 10px;width: 90px;}
+    </style>
+</head>
+<body>
+<canvas class="canvas"></canvas>
+<div class="control js_control">
+    <div class="type js_btn">
+        <ul class="c-fix">
+            <li><a href="javascript:;" class="js_solid" data-ctrl="true">Solid</a></li>
+            <li><a href="javascript:;" class="js_arc" data-ctrl="true">Arc</a></li>
+            <li><a href="javascript:;" class="js_rect" data-ctrl="true">Rect</a></li>
+            <li><a href="javascript:;" class="js_random" data-ctrl="true">Random</a></li>
+            <li><a href="javascript:;" class="js_clear" data-ctrl="true">Clear</a></li>
+        </ul>
+    </div>
+    <div class="style">
+        <ul class="c-fix">
+            <li><span>LineWidth</span><input type="text" class="js_line_width" placeholder="2" data-ctrl="true" /></li>
+            <li><span>FillColor</span><input type="text" class="js_fill_style" placeholder="lightblue" data-ctrl="true" /></li>
+            <li><span>BorderColor</span><input type="text" class="js_stroke_style" placeholder="blueviolet" data-ctrl="true" /></li>
+        </ul>
+    </div>
+</div>
+<script src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+<script src="https://cdn.bootcss.com/touchjs/0.2.14/touch.min.js"></script>
+<script>
+    var sketch = {
+
+        canvas: null,
+        context: null,
+        canvasData: null,
+        type: 'js_solid',
+        coordinate: {
+            startX: 0,
+            startY: 0,
+            endX: 0,
+            endY: 0
+        },
+
+        init: function () {
+            var _this = this;
+
+            _this.initCanvas();
+            _this.initContext();
+            _this.ctrlBoard();
+            _this.ctrlOptions();
+            _this.drawingEvent();
+        },
+        initCanvas: function () {
+            var _this = this;
+            var canvas = $('.canvas').get(0);
+            var context = canvas.getContext('2d');
+            var ratio = window.devicePixelRatio || 1;
+
+            // 按设备像素密度缩放绘图区
+            canvas.width = canvas.offsetWidth * ratio;
+            canvas.height = canvas.offsetHeight * ratio;
+            context.scale(ratio, ratio);
+
+            _this.canvas = canvas;
+            _this.context = context;
+        },
+        initContext: function () {
+            var _this = this;
+            var lineWidth = $('.js_line_width').val() || 2;
+            var fillStyle = $('.js_fill_style').val() || 'lightblue';
+            var strokeStyle = $('.js_stroke_style').val() || 'blueviolet';
+
+            _this.context.lineWidth = lineWidth;
+            _this.context.fillStyle = fillStyle;
+            _this.context.strokeStyle = strokeStyle;
+        },
+        ctrlBoard: function () {
+            var $body = $('body');
+            var $control = $('.js_control');
+
+            $body.on('click', function (e) {
+                var pageY = e.pageY;
+                var $target = $(e.target);
+                var judge = $target.data('ctrl');
+
+                if (pageY < 20) {
+                    $control.slideDown();
+                }
+                else if (!judge) {
+                    $control.slideUp('fast');
+                }
+            });
+        },
+        ctrlOptions: function () {
+            var _this = this;
+            var $btn = $('.js_btn');
+
+            $btn.on('click', 'a', function (e) {
+                var $target = $(e.target);
+                var type = $target.attr('class');
+
+                if (type == 'js_clear') {
+                    // 清空画布
+                    _this.clearCanvas();
+                } else {
+                    _this.type = type;
+                }
+            });
+        },
+        drawingEvent: function () {
+            var _this = this;
+            var flag = false;
+            var $canvas = $(_this.canvas);
+            var width = _this.canvas.width;
+            var height = _this.canvas.height;
+
+            // 控键类型所对应绘图函数
+            var types = {
+                js_solid: _this.drawSolid,
+                js_arc: _this.drawArc,
+                js_rect: _this.drawRect,
+                js_random: _this.drawRandom
+            };
+
+            var trigger = function (e) {
+                _this.coordinate.startX = e.pageX;
+                _this.coordinate.startY = e.pageY;
+                flag = true;
+
+                _this.initContext();
+                _this.context.beginPath();
+            };
+            var ending = function () {
+                flag = false;
+
+                // 存储绘画历史
+                _this.canvasData = _this.context.getImageData(0, 0, width, height);
+            };
+            var progress = function (e) {
+                _this.coordinate.endX = e.pageX;
+                _this.coordinate.endY = e.pageY;
+
+                if (flag) {
+                    // 清除绘制轨迹
+                    if (_this.type != 'js_random') {
+                        _this.context.clearRect(0, 0, width, height);
+                    }
+                    // 重绘绘画历史
+                    if (_this.canvasData) {
+                        _this.context.putImageData(_this.canvasData, 0, 0);
+                    }
+
+                    // 执行绘画函数
+                    types[_this.type](_this.coordinate, _this);
+                    _this.context.stroke();
+                }
+            };
+
+            $canvas.on({
+                'mousedown': function (e) {
+                    trigger(e);
+                },
+                'touchstart': function (e) {
+                    trigger(e.originalEvent.touches[0]);
+                }
+            });
+            $canvas.on({
+                'mouseup': function () {
+                    ending();
+                },
+                'touchend': function () {
+                    ending();
+                }
+            });
+            $canvas.on({
+                'mousemove': function (e) {
+                    progress(e);
+                },
+                'touchmove': function (e) {
+                    progress(e.originalEvent.touches[0]);
+                }
+            });
+        },
+        clearCanvas: function () {
+            var _this = this;
+            var width = _this.canvas.width;
+            var height = _this.canvas.height;
+
+            _this.context.clearRect(0, 0, width, height);
+            _this.canvasData = _this.context.getImageData(0, 0, width, height);
+        },
+        drawSolid: function (coo, sketch) {
+            var _this = sketch;
+
+            _this.context.beginPath();
+            _this.context.moveTo(coo.startX, coo.startY);
+            _this.context.lineTo(coo.endX, coo.endY);
+        },
+        drawArc: function (coo, sketch) {
+            var _this = sketch;
+            var dX = coo.endX - coo.startX;
+            var dY = coo.endY - coo.startY;
+            var r = Math.sqrt(dX * dX + dY * dY);
+
+            _this.context.beginPath();
+            _this.context.arc(coo.startX, coo.startY, r, 0, 2 * Math.PI);
+            _this.context.fill();
+        },
+        drawRect: function (coo, sketch) {
+            var _this = sketch;
+            var width = coo.endX - coo.startX;
+            var height = coo.endY - coo.startY;
+
+            _this.context.beginPath();
+            _this.context.rect(coo.startX, coo.startY, width, height);
+            _this.context.fill();
+        },
+        drawRandom: function (coo, sketch) {
+            var _this = sketch;
+            _this.context.lineTo(coo.endX, coo.endY);
+        }
+    };
+
+    sketch.init();
+</script>
+</body>
+</html>

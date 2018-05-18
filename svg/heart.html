@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Heart</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        svg{position: fixed;top: 0;left: 0;width: 100%;height: 100%;}
+
+        path{fill: none;stroke: red;stroke-width: 2;}
+        circle{fill: #999;}
+        line{stroke: #999;stroke-width: 2;stroke-dasharray: 5;}
+    </style>
+</head>
+<body>
+<svg>
+    <path d="M 250 250 q 40 -100 120 -50 t 0 150 t -120 100 t -120 -100 t 0 -150 t 120 50 Z" />
+
+    <!-- 辅助点 -->
+    <circle cx="250" cy="250" r="5" />
+    <circle cx="290" cy="150" r="5" />
+    <circle cx="370" cy="200" r="5" />
+    <circle cx="450" cy="250" r="5" />
+    <circle cx="370" cy="350" r="5" />
+    <circle cx="290" cy="450" r="5" />
+    <circle cx="250" cy="450" r="5" />
+    <circle cx="210" cy="450" r="5" />
+    <circle cx="130" cy="350" r="5" />
+    <circle cx="50" cy="250" r="5" />
+    <circle cx="130" cy="200" r="5" />
+    <circle cx="210" cy="150" r="5" />
+
+    <!-- 辅助线 -->
+    <line x1="250" y1="250" x2="290" y2="150" />
+    <line x1="290" y1="150" x2="370" y2="200" />
+    <line x1="370" y1="200" x2="450" y2="250" />
+    <line x1="450" y1="250" x2="370" y2="350" />
+    <line x1="370" y1="350" x2="290" y2="450" />
+    <line x1="290" y1="450" x2="250" y2="450" />
+    <line x1="250" y1="450" x2="210" y2="450" />
+    <line x1="210" y1="450" x2="130" y2="350" />
+    <line x1="130" y1="350" x2="50" y2="250" />
+    <line x1="50" y1="250" x2="130" y2="200" />
+    <line x1="130" y1="200" x2="210" y2="150" />
+    <line x1="210" y1="150" x2="250" y2="250" />
+</svg>
+</body>
+</html>

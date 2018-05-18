@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Polygon</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        .canvas{position: fixed;width: 100%;height: 100%;}
+    </style>
+</head>
+<body>
+<canvas class="canvas"></canvas>
+<script src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+<script>
+    var sketch = {
+
+        canvas: null,
+        context: null,
+
+        init: function () {
+            var _this = this;
+
+            _this.initCanvas();
+            _this.initContext();
+        },
+        initCanvas: function () {
+            var _this = this;
+            var canvas = $('.canvas').get(0);
+            var context = canvas.getContext('2d');
+            var ratio = window.devicePixelRatio || 1;
+            var width = canvas.offsetWidth;
+            var height = canvas.offsetHeight;
+
+            canvas.width = width * ratio;
+            canvas.height = height * ratio;
+            context.scale(ratio, ratio);
+
+            _this.canvas = canvas;
+            _this.context = context;
+        },
+        initContext: function () {
+            var _this = this;
+
+            _this.context.lineWidth = 2;
+            _this.context.fillStyle = 'lightblue';
+            _this.context.strokeStyle = 'blueviolet';
+        },
+        drawPolygon: function (x, y, r, bR, n) {
+            var _this = this;
+
+            var angle = Math.PI * 2 / n;
+            var cos = Math.cos(angle / 2);
+            var sin = Math.sin(angle / 2);
+            var tan = sin / cos;
+
+            // 圆角起点及终点
+            var startX = bR * sin;
+            var startY = r - bR * cos * Math.pow(tan, 2);
+            var endX = -startX;
+            var endY = startY;
+
+            _this.context.save();
+            // 中点变换
+            _this.context.translate(x, y);
+
+            _this.context.beginPath();
+            _this.context.moveTo(startX, startY);
+            for (var i = 0;i < n;i++) {
+                _this.context.quadraticCurveTo(0, r, endX, endY);
+                // 旋转画布
+                _this.context.rotate(angle);
+                _this.context.lineTo(startX, startY);
+            }
+            _this.context.closePath();
+            _this.context.stroke();
+            _this.context.restore();
+        }
+    };
+
+    /**
+     * sketch.drawPolygon(x, y, radius, borderRadius, n);
+     */
+    sketch.init();
+    sketch.drawPolygon(150, 150, 100, 30, 7);
+</script>
+</body>
+</html>

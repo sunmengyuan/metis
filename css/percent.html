@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Percent</title>
+    <style>
+        .box{width: 500px;height: 300px;background-color: greenyellow;margin: 50px auto;}
+        .outer{width: 200px;height: 100px;background-color: yellow;}
+        .inner{width: 50%;height: 50%;background-color: lightblue;}
+
+        /**
+         * 标准文档流：宽高为父级百分比
+         * absolute 定位流：宽高为定位父级百分比
+         * fixed 定位流：宽高为窗口百分比
+         */
+        .relative{position: relative;}
+        .absolute{position: absolute;left: 0;top: 0;}
+        .fixed{position: fixed;left: 0;top: 0;}
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="outer">
+        <div class="inner"></div>
+    </div>
+</div>
+</body>
+</html>

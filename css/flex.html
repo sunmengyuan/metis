@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flex</title>
+    <style>
+        /* 等高布局 */
+        .box {display: flex;flex-flow: row nowrap;align-items: stretch;background-color: lightyellow;}
+        .child {flex: 0 0 100px;font-size: 14px;line-height: 30px;color: green;padding: 10px;margin: 20px;background-color: greenyellow;}
+        .child:nth-child(2) {flex: 1 1 auto;}
+
+        /* 等分布局 */
+        .child {flex: 1 1 100%;}
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="child">文字文字文字</div>
+    <div class="child">文字文字文字文字文字文字文字文字文字</div>
+    <div class="child">文字文字文字文字文字文字</div>
+</div>
+</body>
+</html>

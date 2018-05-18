@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件冒泡</title>
+    <style>
+        .outer, .inner{margin: 0 auto;text-align: center;padding: 10px 0;}
+        .outer{width: 500px;background-color: greenyellow;}
+        .inner{width: 200px;background-color: yellow;}
+        .inner a{display: inline-block;padding: 0 15px;line-height: 30px;font-size: 18px;border-radius: 3px;border: 1px solid #333;color: #333;text-decoration: none;}
+    </style>
+</head>
+<body>
+<div class="outer">
+    <div class="inner">
+        <a href="index.html">按钮</a>
+    </div>
+</div>
+<script src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+<script>
+    var $inner = $('.inner');
+
+    $('.outer').on('click', function () {
+        console.log('outer');
+    });
+
+    $inner.on('click', function (e) {
+        e.stopPropagation(); // 阻止事件向父级冒泡，不影响当前节点事件监听
+        e.stopImmediatePropagation(); // 阻止事件向父级冒泡，同时阻止该元素同类型事件，影响当前节点事件监听
+        console.log('inner');
+    });
+
+    $('a').on('click', function (e) {
+        e.preventDefault(); // 阻止默认行为
+        e.stopPropagation();
+        console.log('a');
+
+        return false; // stopPropagation 且 preventDefault，不能阻止该元素同类型事件
+    });
+
+    $inner.on('click', function () {
+        console.log('other');
+    });
+</script>
+</body>
+</html>

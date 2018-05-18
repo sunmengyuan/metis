@@ -1,0 +1,4 @@
+.loading-percent{position: fixed !important;position: relative;width: 120px;text-align: center;}
+.loading-percent .glass{height: 170px;background: url("http://ormq8rb63.bkt.clouddn.com/loading.png") no-repeat 50% 0;background-size: 120px auto;}
+.loading-percent .cocktail{position: absolute;top: 50px;left: 0;z-index: -1;width: 100%;height: 50px;background: -webkit-gradient(linear, left bottom, left top, from(#ff6e6e), color-stop(0.9, #ff6e6e), to(#fff));}
+.loading-percent text{margin-left: -10px;}

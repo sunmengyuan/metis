@@ -1,0 +1,8 @@
+<script id="tmpl_diary" type="text/x-tmpl">
+{{each(i, diary) data}}
+<li>
+    <h4>${diary.title}<a href="javascript:;" class="js_fav" data-id="${diary.id}" data-is_faved="${diary.is_faved}"><em>${diary.voter_num}</em><em class="ico-fav {{if diary.is_faved}}ico-faved{{/if}}"></em></a></h4>
+    <div class="diary-content">${diary.content}</div>
+</li>
+{{/each}}
+</script>

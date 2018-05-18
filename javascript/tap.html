@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点透</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        .outer{width: 150px;height: 150px;background-color: greenyellow;}
+        .inner{width: 100px;height: 100px;background-color: yellow;position: relative;top: -100px;}
+    </style>
+</head>
+<body>
+<div class="outer"></div>
+<div class="inner"></div>
+<script src="https://cdn.bootcss.com/zepto/1.1.6/zepto.min.js"></script>
+<script src="https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+<script src="https://cdn.bootcss.com/touchjs/0.2.14/touch.min.js"></script>
+<script>
+    new FastClick(document.body); // 防止点透
+
+    // click 事件滞后，上层元素消失，底层元素绑定事件触发
+    $('.inner').on('tap', function () {
+        console.log('inner');
+        $(this).hide();
+    });
+    $('.outer').on('click', function () {
+        console.log('outer');
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Perspective</title>
+    <style>
+        .outer{width: 200px;margin: 50px auto;border: 1px solid #999;}
+        .outer img{width: 100%;display: block;}
+
+        .lst{margin: 100px 0;padding: 0 10px;text-align: center;}
+        .lst img{width: 200px;margin: 0 15px;}
+
+        /* scale 不影响元素占位 */
+        .preserve3d{-webkit-transform-style: preserve-3d;transform-style: preserve-3d;}
+        .perspective{-webkit-transform: perspective(200px);transform: perspective(200px);}
+        .rotateX{-webkit-transform: rotateX(30deg);transform: rotateX(30deg);}
+        .rotateY{-webkit-transform: rotateY(30deg);transform: rotateY(30deg);}
+        .rotateZ{-webkit-transform: rotateZ(30deg);transform: rotateZ(30deg);}
+
+        .rotateY-perspective{-webkit-transform: perspective(200px) rotateY(30deg);transform: perspective(200px) rotateY(30deg);}
+    </style>
+</head>
+<body>
+<div class="outer preserve3d perspective"><img src="http://7d9qwy.com2.z0.glb.qiniucdn.com/2015/08/21/d3c6029346" class="rotateX" /></div>
+<div class="lst preserve3d perspective">
+    <img src="http://7d9qwy.com2.z0.glb.qiniucdn.com/2015/08/21/d3c6029346" class="rotateY" />
+    <img src="http://7d9qwy.com2.z0.glb.qiniucdn.com/2015/08/21/d3c6029346" class="rotateY" />
+</div>
+<div class="lst preserve3d">
+    <img src="http://7d9qwy.com2.z0.glb.qiniucdn.com/2015/08/21/d3c6029346" class="rotateY-perspective" />
+    <img src="http://7d9qwy.com2.z0.glb.qiniucdn.com/2015/08/21/d3c6029346" class="rotateY-perspective" />
+</div>
+</body>
+</html>

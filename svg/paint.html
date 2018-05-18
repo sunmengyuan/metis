@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Paint</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        svg, image{width: 250px;height: 250px;}
+        svg{border: 5px solid #774100;position: fixed;top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);}
+        path{fill: none;stroke: #fff;stroke-width: 50;stroke-dasharray: 4322;}
+    </style>
+</head>
+<body>
+<svg>
+    <defs>
+        <mask id="mask">
+            <path id="path" d="M 0 0 l -50 50 l 150 -80 l -150 150 l 180 -140 l -150 150 l 200 -150 l -200 220 l 280 -220 l -270 280 l 270 -220 l -210 230 l 250 -190 l -180 180 l 250 -160 l -195 190 Z" />
+        </mask>
+    </defs>
+    <g mask="url(#mask)">
+        <image x="0" y="0" xlink:href="http://oij8a9ql4.bkt.clouddn.com/portrait.jpg" />
+    </g>
+    <animate xlink:href="#path" attributeName="stroke-dashoffset" from="4322" to="0" dur="2s" />
+</svg>
+</body>
+</html>

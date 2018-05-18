@@ -1,0 +1,102 @@
+<view class="fliter">
+    <view class="fliter-bar gm-clear" style="top: {{ top ? (top + 'rpx') : 0 }};">
+        <view
+            class="item {{ curBar == index ? 'active' : '' }}"
+            wx:for="{{ [selected.area.name, selected.tag.name, selected.order.name] }}"
+            data-idx="{{ index }}"
+            bindtap="tapBar">
+            <text>{{ item }}</text>
+            <view class="icon gm-center"></view>
+        </view>
+    </view>
+    <view class="placeholder"></view>
+    <view
+        class="fliter-wrap"
+        hidden="{{ curBar == null }}"
+        bindtap="tapWrap"
+        style="top: {{ top + 84 }}rpx;">
+        <view class="areas" hidden="{{ curBar }}">
+            <scroll-view class="col1" scroll-y>
+                <text
+                    class="{{ curCol.col1_area == index ? 'active' : '' }}"
+                    wx:for="{{ areas }}"
+                    data-id="{{ item.id }}"
+                    data-name="{{ item.name }}"
+                    data-idx="{{ index }}"
+                    data-type="col1_area"
+                    bindtap="tapItem">{{ item.name }}</text>
+            </scroll-view>
+            <scroll-view
+                class="col2"
+                wx:for="{{ areas }}"
+                wx:for-item="area"
+                wx:if="{{ curCol.col1_area == index }}"
+                scroll-y>
+                <text
+                    class="{{ curCol.col2_area == index ? 'active' : '' }}"
+                    wx:for="{{ area.provinces }}"
+                    data-id="{{ item.id }}"
+                    data-name="{{ item.name }}"
+                    data-idx="{{ index }}"
+                    data-type="col2_area"
+                    bindtap="tapItem">{{ item.name }}</text>
+            </scroll-view>
+            <block
+                wx:for="{{ areas }}"
+                wx:for-item="area"
+                wx:for-index="curArea">
+                <scroll-view
+                    class="col3"
+                    wx:for="{{ area.provinces }}"
+                    wx:for-item="province"
+                    wx:if="{{ (curCol.col1_area == curArea) && (curCol.col2_area == index) }}"
+                    scroll-y>
+                    <text
+                        class="{{ selected.area.id == item.id ? 'active' : '' }}"
+                        wx:for="{{ province.cities }}"
+                        data-id="{{ item.id }}"
+                        data-name="{{ item.name }}"
+                        data-type="area"
+                        bindtap="triggerSelected">{{ item.name }}</text>
+                </scroll-view>
+            </block>
+        </view>
+        <view class="tags" hidden="{{ curBar != 1 }}">
+            <scroll-view class="col1" scroll-y>
+                <text
+                    class="{{ curCol.col1_tag == index ? 'active' : '' }}"
+                    wx:for="{{ tags }}"
+                    data-id="{{ item.id }}"
+                    data-name="{{ item.name }}"
+                    data-idx="{{ index }}"
+                    data-type="col1_tag"
+                    bindtap="tapItem">{{ item.name }}</text>
+            </scroll-view>
+            <scroll-view
+                class="col2"
+                wx:for="{{ tags }}"
+                wx:for-item="tag"
+                wx:if="{{ curCol.col1_tag == index }}"
+                scroll-y>
+                <text
+                    class="{{ selected.tag.id == item.id ? 'active' : '' }}"
+                    wx:for="{{ tag.sub_tags }}"
+                    data-id="{{ item.id }}"
+                    data-name="{{ item.name }}"
+                    data-type="tag"
+                    bindtap="triggerSelected">{{ item.name }}</text>
+            </scroll-view>
+        </view>
+        <view class="orders" hidden="{{ curBar != 2 }}">
+            <scroll-view scroll-y>
+                <text
+                    class="{{ selected.order.id == item.id ? 'active' : '' }}"
+                    wx:for="{{ orders }}"
+                    data-id="{{ item.id }}"
+                    data-name="{{ item.name }}"
+                    data-type="order"
+                    bindtap="triggerSelected">{{ item.name }}</text>
+            </scroll-view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,65 @@
+@import "math";
+
+@mixin sector ($radius, $count, $color) {
+    $diameter: 2 * $radius;
+    position: relative;
+    width: $diameter;
+    height: $diameter;
+    border-radius: 50%;
+    overflow: hidden;
+    span {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        @if $count == 1 {
+            width: $diameter;
+            height: $diameter;
+            background-color: $color;
+        } @else if $count == 2 {
+            width: $diameter;
+            height: $radius;
+            background-color: $color;
+        } @else {
+            width: 0;
+            height: 0;
+            border: $radius solid transparent;
+            $borderWidth: tan(pi() / $count) * $radius;
+            border-left-width: $borderWidth;
+            border-right-width: $borderWidth;
+            border-top-color: $color;
+        }
+    }
+    @for $index from 0 to $count {
+        span:nth-child(#{$index + 1}) {
+            $transform: translate(-50%, 0) rotate(360deg / $count / 2 + 360deg * $index / $count);
+            $origin: if($count == 2, bottom, center);
+            -webkit-transform: $transform;
+                    transform: $transform;
+            -webkit-transform-origin: $origin;
+                    transform-origin: $origin;
+        }
+    }
+}
+
+.container {
+    @include sector(100px, 15, #8AEBDC);
+    margin: 100px auto;
+    background-color: rgba(231, 247, 255, 0.83);
+
+    .info {
+        width: 160px;
+        height: 160px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        font-size: 32px;
+        line-height: 160px;
+        text-align: center;
+        color: #8A8A8A;
+        margin-left: -80px;
+        margin-top: -80px;
+        border-radius: 50%;
+        background-color: #FFF;
+        box-shadow: 0 0 6px rgba(0, 144, 249, 0.2);
+    }
+}

@@ -1,0 +1,15 @@
+.welcome-mn{position: fixed;}
+.welcome-bar{position: relative;width: 300px;height: 270px;background: url("http://ormq8rb63.bkt.clouddn.com/bar.jpg") no-repeat 50% 0;background-size: 300px auto;}
+.welcome-bar .door{position: absolute;top: 34px;left: 23px;width: 48px;height: 140px;background: url("http://ormq8rb63.bkt.clouddn.com/door.png") no-repeat 0 0;background-size: 48px auto;}
+
+.opendoor{-webkit-animation: opendoor 1.2s forwards;animation: opendoor 1.2s forwards;-webkit-transform-origin: right;transform-origin: right;}
+@-webkit-keyframes opendoor
+{
+from{-webkit-transform: scaleX(1);transform: scaleX(1);}
+to{-webkit-transform: scaleX(0.15);transform: scaleX(0.15);}
+}
+@keyframes opendoor
+{
+from{-webkit-transform: scaleX(1);transform: scaleX(1);}
+to{-webkit-transform: scaleX(0.15);transform: scaleX(0.15);}
+}

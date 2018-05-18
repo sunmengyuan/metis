@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Module</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        li{list-style: none;}
+
+        .container{padding: 20px;}
+        .swipe-lst li{width: 100%;height: 200px;border: 1px solid #333;margin: 10px 0;position: relative;}
+        .swipe-main{top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);position: absolute;}
+        .swipe-title, .swipe-content{font-size: 22px;line-height: 28px;color: #666;padding: 15px;text-align: center;}
+        .swipe-title{font-size: 26px;line-height: 30px;font-weight: bold;}
+    </style>
+</head>
+<body>
+<div class="container">
+    <ul id="swipe-lst" class="swipe-lst"></ul>
+</div>
+<script id="module_swipe" type="text/module">
+    <div class="swipe-main">
+        <div class="swipe-title">$title</div>
+        <div class="swipe-content">$content</div>
+    </div>
+</script>
+
+<script>
+    // data
+    var swipeTitle = [
+            'swipe first',
+            'swipe second',
+            'swipe third',
+            'swipe fourth',
+            'swipe fifth'
+    ];
+    var swipeContent = [
+            'content first',
+            'content second',
+            'content third',
+            'content fourth',
+            'content fifth'
+    ];
+
+    // module
+    var container = document.getElementById('swipe-lst');
+    var module = document.getElementById('module_swipe').innerHTML;
+
+    // create
+    for (var i = 0;i < swipeTitle.length;i++) {
+        var substance = module.replace('$title', swipeTitle[i]).replace('$content', swipeContent[i]);
+        var liElem = document.createElement('li');
+
+        liElem.innerHTML = substance;
+        container.appendChild(liElem);
+    }
+</script>
+</body>
+</html>

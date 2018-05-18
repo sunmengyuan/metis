@@ -1,0 +1,44 @@
+@charset "utf-8";
+
+/* common */
+*{margin: 0;padding: 0;word-break: break-all;}
+body{text-align: left;font-family: "\5FAE\8F6F\96C5\9ED1", "\5B8B\4F53", Arial, Verdana;background-color: #1d1d1d;}
+
+h1, h2, h3, h4, h5, h6{font-weight: normal;}
+ul, ol, li{list-style: none;}
+table{border-collapse: collapse;border-spacing: 0;}
+input, textarea, button{border: none;resize: none;outline: none;}
+button{background-color: transparent;}
+em, i{font-style: normal;}
+a{text-decoration: none;color: #fff;word-break: break-all;}
+img{display: block;width: 100%;}
+
+/* clear */
+.c-fix:after{content: "";display: block;height: 0;clear: both;visibility: hidden;}
+
+/* display */
+.c-block{display: block;}
+.c-inline{display: inline-block;}
+.c-hidden{display: none;}
+.c-table{display: table}
+.c-table > div{display: table-cell;vertical-align: middle;}
+
+/* layer */
+.c-mask{position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: 100;background-color: rgba(0, 0, 0, 0.8);}
+.c-header{position: fixed;left: 0;top: 0;width: 100%;z-index: 10;box-sizing: border-box;background-color: #1d1d1d;box-shadow: 0 0 20px 5px #1d1d1d;}
+.c-footer{position: fixed;left: 0;bottom: 0;width: 100%;z-index: 10;box-sizing: border-box;background-color: #1d1d1d;box-shadow: 0 0 20px 5px #1d1d1d;}
+.c-hlt{top: 0;left: 0;}
+.c-frt{bottom: 0;right: 0;}
+
+/* center */
+.c-center{top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);}
+.c-vertical{top: 50%;-webkit-transform: translate(0, -50%);transform: translate(0, -50%);}
+.c-horizontal{left: 50%;-webkit-transform: translate(-50%, 0);transform: translate(-50%, 0);}
+
+/* align */
+.vertical-align span{display: inline-block;vertical-align: middle;}
+
+/* ellipsis */
+.ellipsis-row1{overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.ellipsis-row2{overflow: hidden;text-overflow: ellipsis;-webkit-line-clamp: 2;-webkit-box-orient: vertical;display: -webkit-box;}
+.ellipsis-row3{overflow: hidden;text-overflow: ellipsis;-webkit-line-clamp: 3;-webkit-box-orient: vertical;display: -webkit-box;}

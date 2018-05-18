@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0' />
+    <title>Chat</title>
+    <link rel='stylesheet/less' href='/style/style.less' />
+</head>
+<body>
+<div class='hex c-horizontal'><img src='/img/hex.png' /></div>
+<script id='module_dialog' type='text/x-module'>
+    <div class='dialog c-mask js_dialog'>
+        <div class='c-center'>
+            <span class='c-block'>$message</span>
+            <a href='javascript:;' class='$btnClass'>确定</a>
+        </div>
+    </div>
+</script>
+<script id='module_tips' type='text/x-module'>
+    <div class='tips c-center js_tips'>$message</div>
+</script>
+<script>
+    var global = {
+        cur_user: {
+            id: '<%= cur_user.id %>',
+            nickname: '<%= cur_user.nickname %>'
+        }
+    };
+</script>
+<script src='https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js'></script>
+<script src='https://cdn.bootcss.com/less.js/1.7.0/less.min.js'></script>
+<script src='https://cdn.bootcss.com/socket.io/1.4.8/socket.io.min.js'></script>
+<script src='/script/main.js'></script>

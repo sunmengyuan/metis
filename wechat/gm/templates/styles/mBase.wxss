@@ -1,0 +1,129 @@
+/* 占位图 */
+.mError,
+.mError image,
+.mError text {
+    position: fixed;
+}
+.mEmpty image,
+.mEmpty text {
+    position: absolute;
+}
+.mError image,
+.mError text,
+.mEmpty image,
+.mEmpty text {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.mError,
+.mEmpty {
+    background-color: #FFF;
+}
+.mError image,
+.mEmpty image {
+    width: 349rpx;
+    height: 396rpx;
+}
+.mError text,
+.mEmpty text {
+    width: 100%;
+    font-size: 30rpx;
+    text-align: center;
+    color: #666;
+}
+.mError {
+    width: 100%;
+    height: 100%;
+}
+.mError image {
+    margin-top: -140rpx;
+}
+.mEmpty {
+    position: relative;
+    min-height: 500rpx;
+}
+.mEmpty text {
+    margin-top: 140rpx;
+}
+
+/* 列表加载底部 loading */
+.mLoading {
+    text-align: center;
+    margin: 40rpx 0;
+}
+.mLoading image,
+.mLoading text {
+    vertical-align: middle;
+}
+.mLoading image {
+    width: 26rpx;
+    height: 26rpx;
+    margin-right: 14rpx;
+    animation: loading 0.5s linear infinite forwards;
+}
+.mLoading text {
+    font-size: 26rpx;
+    line-height: 40rpx;
+    color: #999;
+}
+.mLoading .complete:before,
+.mLoading .complete:after {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    width: 200rpx;
+    height: 1rpx;
+    background-color: #E5E5E5;
+}
+.mLoading .complete:before {
+    margin-right: 20rpx;
+}
+.mLoading .complete:after {
+    margin-left: 20rpx;
+}
+@keyframes loading
+{
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* 返回置顶按钮 */
+.mGotop {
+    position: fixed;
+    bottom: 80rpx;
+    right: 40rpx;
+}
+.mGotop,
+.mGotop image {
+    width: 90rpx;
+    height: 90rpx;
+}
+
+/* Toast */
+.mToast {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    z-index: 1000;
+    width: 100%;
+    text-align: center;
+    padding: 0 50rpx;
+    box-sizing: border-box;
+    transform: translate(-50%, -50%);
+}
+.mToast text {
+    display: inline-block;
+    width: auto;
+    font-size: 30rpx;
+    line-height: 40rpx;
+    text-align: center;
+    color: #FFF;
+    padding: 20rpx 40rpx;
+    border-radius: 1000rpx;
+    background-color: rgba(0, 0, 0, 0.6);
+}

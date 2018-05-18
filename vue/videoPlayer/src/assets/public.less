@@ -1,0 +1,17 @@
+.c-fix:after{content: "";display: block;height: 0;clear: both;visibility: hidden;}
+
+.c-block{display: block;}
+.c-inline{display: inline-block;}
+.c-hidden{display: none;}
+
+.c-mask{position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: 100;background-color: rgba(0, 0, 0, 0.5);}
+.c-header{position: fixed;left: 0;top: 0;width: 100%;z-index: 10;box-sizing: border-box;}
+.c-footer{position: fixed;left: 0;bottom: 0;width: 100%;z-index: 10;box-sizing: border-box;}
+
+.c-center{top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);}
+.c-vertical{top: 50%;-webkit-transform: translate(0, -50%);transform: translate(0, -50%);}
+.c-horizontal{left: 50%;-webkit-transform: translate(-50%, 0);transform: translate(-50%, 0);}
+
+.ellipsis-row1{overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.ellipsis-row2{overflow: hidden;text-overflow: ellipsis;-webkit-line-clamp: 2;-webkit-box-orient: vertical;display: -webkit-box;}
+.ellipsis-row3{overflow: hidden;text-overflow: ellipsis;-webkit-line-clamp: 3;-webkit-box-orient: vertical;display: -webkit-box;}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LineHeight</title>
+    <style>
+        .outer{margin: 50px auto;text-align: center;font-size: 16px;}
+        .inner{font-size: 12px;}
+
+        /* 含单位的 line-height 具有父级继承性 */
+        .percent{line-height: 150%;} /* 子行高 18px，父行高 24px */
+        .em{line-height: 2em;} /* 子行高 24px，父行高 32px */
+        .px{line-height: 32px;} /* 子行高 32px，父行高 32px */
+        .none{line-height: 2;} /* 子行高 24px，父行高 24px */
+    </style>
+</head>
+<body>
+<div class="outer">
+    <div class="inner">这里是一段文字</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,421 @@
+@import "public.css";
+
+@light: #f9ebb1;
+@dark: #8f692e;
+@middle: #bea97c;
+
+.btn {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 30px;
+    color: @dark;
+    padding: 0 20px;
+    border: 2px solid @dark;
+    background-color: @light;
+
+    &:hover {
+        color: @light;
+        border-color: @light;
+        background-color: transparent;
+    }
+}
+.btnAttached {
+    margin: 20px 2px 10px;
+
+    &:first-child {
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+    }
+    &:last-child {
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+}
+.input {
+    font-size: 18px;
+    line-height: 36px;
+    color: @light;
+    width: 80%;
+    margin: 10px 0;
+    border-bottom: 1px solid @light;
+    background-color: transparent;
+
+    &::-webkit-input-placeholder {
+        color: @middle;
+    }
+}
+.card {
+    text-align: center;
+    width: 380px;
+    margin: 100px auto;
+    padding: 10px 0;
+    border: 2px solid @light;
+    border-radius: 10px;
+}
+.dialog > div {
+    position: fixed;
+    width: 300px;
+    text-align: center;
+    padding: 25px 0 15px;
+    border: 1px solid @light;
+
+    span {
+        font-size: 16px;
+        line-height: 24px;
+        color: @light;
+        margin-bottom: 20px;
+        padding: 0 20px;
+    }
+    a {
+        .btn;
+
+        border-radius: 30px;
+    }
+}
+.tips {
+    position: fixed;
+    font-size: 14px;
+    line-height: 20px;
+    color: #f0f0f0;
+    max-width: 200px;
+    padding: 5px 15px;
+    border-radius: 5px;
+    background-color: rgba(255, 123, 123, 0.8);
+}
+.hex {
+    position: fixed;
+    top: 100px;
+    z-index: -100;
+    width: 80%;
+    max-width: 697px;
+
+    img {
+        transform-origin: center;
+
+        @animate: rotation 20s linear infinite forwards;
+
+        -webkit-animation: @animate;
+                animation: @animate;
+    }
+}
+.userinfo > div {
+    position: fixed;
+    width: 260px;
+    max-height: 320px;
+    overflow-y: auto;
+    font-size: 13px;
+    line-height: 27px;
+    color: @light;
+    padding: 15px 20px;
+    border: 1px solid @middle;
+
+    h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    p {
+        color: @middle;
+        margin-top: 10px;
+    }
+    &::-webkit-scrollbar {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+}
+.warning {
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    color: @middle;
+    padding: 0 30px;
+}
+
+
+.m-log {
+    & > div {
+        input { .input; }
+        div a { .btn; .btnAttached; }
+        p {
+            font-size: 16px;
+            line-height: 28px;
+            color: @middle;
+            padding: 10px 20px 0;
+
+            a { color: @light; }
+        }
+
+        transform-origin: center;
+
+        &.magnify {
+            @animate: magnify 0.5s ease-in forwards;
+
+            -webkit-animation: @animate;
+                    animation: @animate;
+        }
+        &.shrink {
+            @animate: shrink 0.5s ease-in forwards;
+
+            -webkit-animation: @animate;
+                    animation: @animate;
+        }
+    }
+}
+.m-myinfo {
+    input {
+        .input;
+
+        font-size: 14px;
+    }
+    & > div a { .btn; .btnAttached; }
+
+    .myinfo-password {
+        a {
+            position: relative;
+            font-size: 14px;
+            line-height: 20px;
+            color: @dark;
+            margin: 10px 0;
+            padding-right: 10px;
+
+            &:before, &:after {
+                content: "";
+                display: block;
+                width: 7px;
+                height: 1px;
+                background-color: @dark;
+                position: absolute;
+                top: 10px;
+            }
+            &:before { right: -4px;.rotateZ(130deg); }
+            &:after { right: 0;.rotateZ(-130deg); }
+            &.up:before { .rotateZ(50deg); }
+            &.up:after { .rotateZ(-50deg); }
+        }
+    }
+}
+.m-members {
+    position: fixed;
+    right: 0;
+    top: 110px;
+    width: 200px;
+    padding: 5px 10px;
+    border-top: 2px solid @light;
+    background-color: #1d1d1d;
+
+    ul {
+        max-height: 330px;
+        overflow-y: auto;
+
+        li {
+            font-size: 14px;
+            line-height: 24px;
+
+            span {
+                width: 4px;
+                height: 4px;
+                vertical-align: middle;
+                margin-right: 2px;
+                border-radius: 50%;
+            }
+            &.online {
+                color: @light;
+
+                a { color: @light; }
+                span { background-color: #a2ff14; }
+            }
+            &.offline {
+                color: #999;
+
+                a { color: #999; }
+                span { background-color: transparent; }
+            }
+        }
+        &::-webkit-scrollbar {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+    }
+}
+.m-chat {
+    padding: 90px 260px 60px 20px;
+
+    .chat-send {
+        position: relative;
+        padding-right: 74px;
+
+        input {
+            font-size: 16px;
+            line-height: 30px;
+            color: @light;
+            width: 100%;
+            padding: 0 10px;
+            border: 2px solid @light;
+            background-color: transparent;
+            box-sizing: border-box;
+        }
+        a {
+            .btn;
+
+            position: absolute;
+        }
+    }
+    .chat-message {
+        li {
+            margin: 20px 0;
+
+            span, p {
+                display: inline-block;
+                font-size: 14px;
+            }
+            span {
+                line-height: 36px;
+            }
+            p {
+                position: relative;
+                line-height: 20px;
+                padding: 8px 15px;
+                border-radius: 5px;
+            }
+            em {
+                display: block;
+                width: 0;
+                height: 0;
+
+                position: absolute;
+                top: 50%;
+
+                @transform: rotateZ(-45deg) translate(0, -50%);
+
+                -webkit-transform: @transform;
+                        transform: @transform;
+            }
+
+            .style (@color, @direction) {
+                text-align: @direction;
+
+                span { float: @direction; color: @color; }
+                p { background-color: @color; }
+                em { border: 4px solid @color; }
+            }
+
+            &.self {
+                .style(#15b9a3, right);
+
+                span { padding-left: 20px; }
+                p { color: #f0f0f0; }
+                em {
+                    right: -6px;
+                    border-top-color: transparent;
+                    border-left-color: transparent;
+                }
+            }
+            &.other {
+                .style(#f0f0f0, left);
+
+                span { padding-right: 20px; }
+                p { color: #333; }
+                em {
+                    left: -1px;
+                    border-bottom-color: transparent;
+                    border-right-color: transparent;
+                }
+            }
+            &.failed {
+                p { text-decoration: line-through; }
+            }
+        }
+    }
+}
+.chatroom-header {
+    padding: 10px 20px;
+    min-height: 58px;
+
+    & > div {
+        position: relative;
+        padding-left: 208px;
+
+        .ctrls {
+            position: absolute;
+            margin-top: 6px;
+
+            a {
+                float: left;
+                width: 32px;
+                height: 32px;
+                margin-right: 20px;
+                background: url("../img/ctrls.png") no-repeat 0 0;
+                background-size: 32px auto;
+
+                &:nth-child(2) {
+                    background-position: 0 -111px;
+                }
+                &:nth-child(3) {
+                    background-position: 0 -74px;
+                }
+                &:nth-child(4) {
+                    background-position: 0 -37px;
+                }
+            }
+        }
+        ul {
+            max-height: 78px;
+            overflow: hidden;
+
+            li {
+                font-size: 14px;
+                line-height: 26px;
+                text-align: right;
+                color: @middle;
+
+                span {
+                    color: @light;
+                    padding-right: 10px;
+                }
+            }
+        }
+    }
+}
+
+
+/* transform */
+.rotateZ (@deg) {
+    -webkit-transform: rotateZ(@deg);
+            transform: rotateZ(@deg);
+}
+.scale (@scale) {
+    -webkit-transform: scale(@scale);
+            transform: scale(@scale);
+}
+
+
+/* animate */
+.rotation {
+    to { .rotateZ(360deg); }
+}
+.magnify {
+    from { .scale(0); }
+    to { .scale(1.0); }
+}
+.shrink {
+    from { .scale(1.0); }
+    to { .scale(0); }
+}
+
+@-webkit-keyframes rotation { .rotation }
+        @keyframes rotation { .rotation }
+
+@-webkit-keyframes magnify { .magnify }
+        @keyframes magnify { .magnify }
+
+@-webkit-keyframes shrink { .shrink }
+        @keyframes shrink { .shrink }
+
+
+/* media */
+@media screen and (max-width: 600px) {
+    .card { width: 80%; }
+    .m-chat { padding: 90px 90px 60px 20px; }
+    .m-members { width: 50px; }
+}

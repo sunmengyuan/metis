@@ -1,0 +1,51 @@
+<view class="section-game">
+  <view class="corner">
+    <view class="{{item}}" wx:for="{{['fst','scd','thd','fth']}}"></view>
+  </view>
+  <view class="game-mn c-center">
+    <view wx:if="{{!triggerResult}}">
+      <button class="btn-finish" wx:if="{{triggerDecorate}}" bindtap="handleFinish"></button>
+      <view wx:else>
+        <button class="btn-shake" bindtap="handleShake"></button>
+        <button class="btn-reset" bindtap="handleReset"></button>
+      </view>
+    </view>
+    <view class="game-effect">
+      <view class="effect-glass">
+        <view class="effect-color" style="top: {{color.placeholder[curOption.glass][0]}}px;height: {{color.placeholder[curOption.glass][1]}}px;background: -webkit-gradient(linear,left bottom,left top,{{color.gradient}}"></view>
+        <view class="glass glass{{item}}" wx:for="{{[1,2,3]}}" wx:if="{{curOption.glass == 'glass' + item}}"></view>
+      </view>
+      <view class="effect-fruit {{triggerDecorate && 'aftershake'}}">
+        <view class="fruit{{item}}" wx:for="{{[1,2,3,4,5,6]}}" style="bottom: {{fruit[curOption.glass]['fruit' + item][0]}}px;left: {{fruit[curOption.glass]['fruit' + item][1]}}px" wx:if="{{curOption.fruit == 'fruit' + item}}"></view>
+      </view>
+      <view class="effect-decorate">
+        <view class="decorate{{item}}" wx:for="{{[1,2,3,4,5,6]}}" style="top: {{decorate[curOption.glass]['decorate' + item][0]}}px;left: {{decorate[curOption.glass]['decorate' + item][1]}}px" wx:if="{{decorate.trigger[index]}}"></view>
+      </view>
+    </view>
+    <view wx:if="{{triggerResult}}" class="game-share">
+      <text>你调制了一杯【{{cocktailName}}】，快分享给好友吧！</text>
+      <button class="btn-share btn-common" open-type="share">分享</button>
+    </view>
+    <view class="game-decorate option-lst c-fix" wx:elif="{{triggerDecorate}}" bindtap="handleDecorate">
+      <view class="decorate{{item}}" hover-class="active" wx:for="{{[1,2,3,4,5,6]}}"><icon class="c-center" data-option="decorate{{item}}"></icon></view>
+    </view>
+    <view wx:else>
+      <view class="game-tab c-fix" bindtap="handleTab">
+        <text data-tab="{{item[0]}}" class="{{(curTab == item[0]) && 'active'}}" wx:for="{{[['glass','Glass'],['layer','Layer'],['color','Liquor'],['fruit','Fruit']]}}">{{item[1]}}</text>
+      </view>
+      <view class="game-option">
+        <view class="option-lst option-{{lstname}} c-fix" wx:for="{{['glass','layer','color','fruit']}}" wx:for-item="lstname" wx:if="{{curTab == lstname}}" bindtap="handleOption">
+          <view class="{{lstname}}{{item}}" hover-class="active" wx:for="{{[1,2,3,4,5,6]}}" wx:if="{{!((index > 2) && (lstname == 'glass'))}}"><icon class="c-center" data-option="{{lstname}}{{item}}"></icon></view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="game-shake" wx:if="{{ triggerShake }}">
+    <view class="shaker shake"></view>
+  </view>
+  <view class="game-name" wx:if="{{ triggerName }}">
+    <view class="dialog-name c-center">
+      <input focus maxlength="20" bindconfirm="handleName" />
+    </view>
+  </view>
+</view>

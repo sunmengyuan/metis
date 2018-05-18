@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coordinate</title>
+    <style>
+        .target{width: 100px;height: 100px;background-color: greenyellow;position: fixed;top: 0;left: 0;}
+    </style>
+</head>
+<body>
+<div class="target js_target"></div>
+<script src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+<script>
+    /**
+     * client：相对于 windows
+     * page：相对于 document
+     * screen：相对于 screen
+     */
+    $(document).on('click', function (e) {
+        var x = e.pageX;
+        var y = e.pageY;
+        var $target = $('.js_target');
+
+        $target.css('top', y);
+        $target.css('left', x);
+    });
+</script>
+</body>
+</html>
