@@ -14,7 +14,10 @@ module.exports = {
                 data: [
                     {
                         date: '2018-05-01',
-                        reservationCount: type.number()
+                        reservationCount: type.number({
+                            min: 150,
+                            max: 200
+                        })
                     },
                     {
                         date: '2018-05-11',
@@ -218,9 +221,9 @@ module.exports = {
                     message: ''
                 },
                 page: {
-                    total: 0,
+                    total: 10,
                     offset: 0,
-                    limit: 0
+                    limit: 10
                 },
                 data: type.list({
                     length: 10,
