@@ -77,6 +77,101 @@ module.exports = {
             }
         }
     },
+    appointListLeader: {
+        url: '/appoint/list/leader',
+        type: 'GET',
+        data: function () {
+            return {
+                success: true,
+                status: {
+                    code: '',
+                    message: ''
+                },
+                page: {
+                    total: 10,
+                    offset: 0,
+                    limit: 10
+                },
+                data: type.list({
+                    length: 200,
+                    data: function () {
+                        return {
+                            id: type.id(),
+                            name: type.string(),
+                            orderCount: type.number(),
+                            visitCount: type.number()
+                        }
+                    }
+                })
+            }
+        }
+    },
+    appointListSuper: {
+        url: '/appoint/list/super',
+        type: 'GET',
+        data: function () {
+            return {
+                success: true,
+                status: {
+                    code: '',
+                    message: ''
+                },
+                page: {
+                    total: 10,
+                    offset: 0,
+                    limit: 10
+                },
+                data: type.list({
+                    length: 200,
+                    data: function () {
+                        return {
+                            id: type.id(),
+                            name: type.string(),
+                            orderCount: type.number(),
+                            visitCount: type.number()
+                        }
+                    }
+                })
+            }
+        }
+    },
+    appointListDetail: {
+        url: '/appoint/list/detail',
+        type: 'GET',
+        data: function () {
+            return {
+                success: true,
+                status: {
+                    code: '',
+                    message: ''
+                },
+                page: {
+                    total: 10,
+                    offset: 0,
+                    limit: 10
+                },
+                data: type.list({
+                    length: 200,
+                    data: function () {
+                        return {
+                            bdName: type.string(),
+                            poiId: type.id(),
+                            poiName: type.string(),
+                            poiAddr: type.string({
+                                minL: 50,
+                                maxL: 200
+                            }),
+                            plan: type.string(),
+                            checkInStatus: type.number({
+                                min: 0,
+                                max: 1
+                            })
+                        }
+                    }
+                })
+            }
+        }
+    },
     appointSignin: {
         url: '/appoint/signin',
         type: 'POST',
