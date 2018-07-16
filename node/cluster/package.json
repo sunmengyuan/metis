@@ -1,0 +1,16 @@
+{
+    "name": "cluster",
+    "version": "1.0.0",
+    "author": "sunmy <sunmy_meow@sina.com>",
+    "scripts": {
+        "start": "node main.js",
+        "start:cluster": "cross-env MODE=cluster node main.js",
+        "pm2": "pm2 start main.js",
+        "pm2:cluster": "pm2 start main.js -i 0"
+    },
+    "dependencies": {
+        "cross-env": "^5.2.0",
+        "koa": "^2.3.0",
+        "log4js": "^3.0.0"
+    }
+}
