@@ -34,7 +34,9 @@ Log4JS.configure({
             appenders: ['console', 'file'],
             level: 'info'
         }
-    }
+    },
+    pm2: true,
+    pm2InstanceVar: 'INSTANCE_ID'
 });
 const Logger = Log4JS.getLogger();
 Logger.level = 'info';
