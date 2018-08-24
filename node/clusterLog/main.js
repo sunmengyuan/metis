@@ -38,8 +38,7 @@ Log4JS.configure({
     pm2: true,
     pm2InstanceVar: 'INSTANCE_ID'
 });
+
 const Logger = Log4JS.getLogger();
 Logger.level = 'info';
-for (let i = 0; i < 50; i++) {
-    Logger.info(`message: ${process.pid}`);
-}
+for (let i = 0; i < 50; i++) Logger.info(`message: ${process.pid}`);
