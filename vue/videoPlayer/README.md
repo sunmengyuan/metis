@@ -6,7 +6,7 @@
 
 请欣赏 [demo](https://sunmengyuan.github.io/demos/vue/videoPlayer)
 
-![](http://oru3b8jlz.bkt.clouddn.com/screenshot-videoPlayer.jpg)
+![](https://sunmengyuan.github.io/materials/garden/post/share-frontend/screenshot-videoPlayer.jpg)
 
 *****
 

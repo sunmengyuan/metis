@@ -6,7 +6,7 @@
 
 Node.js 结合了 Websocket 的简易多人聊天室，感兴趣的同学可以自行高仿个 QQ 出来。
 
-![](http://oru3b8jlz.bkt.clouddn.com/screenshot-chat.jpg)
+![](https://sunmengyuan.github.io/materials/garden/post/share-frontend/screenshot-chat.jpg)
 
 *****
 

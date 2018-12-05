@@ -4,7 +4,7 @@
 
 请欣赏 [demo](https://sunmengyuan.github.io/demos/echarts/airpollution)
 
-![](http://oru3b8jlz.bkt.clouddn.com/screenshot-airpollution.jpg)
+![](https://sunmengyuan.github.io/materials/garden/post/share-frontend/screenshot-airpollution.jpg)
 
 *****
 

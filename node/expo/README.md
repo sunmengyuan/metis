@@ -6,7 +6,7 @@
 
 这是一个简易的博客系统，用户在该站注册后即可发布个人日记，日记可以被登录用户点赞。功能较简易，外观未经雕琢，纯粹的练习项目。
 
-![](http://oru3b8jlz.bkt.clouddn.com/screenshot-expo.jpg)
+![](https://sunmengyuan.github.io/materials/garden/post/share-frontend/screenshot-expo.jpg)
 
 *****
 

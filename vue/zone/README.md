@@ -6,7 +6,7 @@
 
 这是一个简易的个人空间，用户在该站注册后即可发布个人日记，教科书级别的增删改查功能。背景设计使用了 [Trianglify](https://github.com/qrohlf/trianglify)，在此推荐。
 
-![](http://oru3b8jlz.bkt.clouddn.com/screenshot-zone.jpg)
+![](https://sunmengyuan.github.io/materials/garden/post/share-frontend/screenshot-zone.jpg)
 
 *****
 
