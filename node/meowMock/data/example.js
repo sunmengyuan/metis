@@ -25,7 +25,7 @@ module.exports = {
                         maxL: 16
                     }),
                     image1: type.image([
-                        'http://oij8a9ql4.bkt.clouddn.com/default-fe.jpg',
+                        'http://oij8a9ql4.bkt.clouddn.com/fe.jpg',
                         'http://osm0bpix4.bkt.clouddn.com/thumb.jpg'
                     ]),
                     image2: type.image({

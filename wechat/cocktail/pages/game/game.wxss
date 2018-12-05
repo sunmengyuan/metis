@@ -7,8 +7,8 @@
 .btn-reset, .btn-shake, .btn-finish{position: absolute;top: 150px;z-index: 10;}
 
 .game-effect{position: relative;width: 200px;margin: 5px auto;}
-.effect-glass .glass{height: 230px;background: url("http://oij8a9ql4.bkt.clouddn.com/nothumb.png") no-repeat 50% 100%;background-size: 200px auto;}
-.effect-fruit view, .effect-decorate view{position: absolute;width: 50px;background: url("http://oij8a9ql4.bkt.clouddn.com/nothumb.png") no-repeat 50% 50%;background-size: 50px auto;}
+.effect-glass .glass{height: 230px;background: url("https://sunmengyuan.github.io/materials/garden/nothumb.jpg") no-repeat 50% 100%;background-size: 200px auto;}
+.effect-fruit view, .effect-decorate view{position: absolute;width: 50px;background: url("https://sunmengyuan.github.io/materials/garden/nothumb.jpg") no-repeat 50% 50%;background-size: 50px auto;}
 .effect-fruit view{height: 50px;z-index: -1;}
 .effect-fruit.aftershake view{opacity: 0.5;}
 .effect-decorate view{height: 90px;}
@@ -21,7 +21,7 @@ view.effect-color{position: absolute;z-index: -2;width: 100%;}
 .game-option, .game-decorate{margin: 5px 0;padding: 0 15px;}
 .option-lst{height: 0;padding-bottom: 60%;}
 .option-lst view{position: relative;float: left;width: 33.33%;height: 0;padding-bottom: 30%;}
-.option-lst icon{position: absolute;width: 70%;height: 0;padding-bottom: 70%;border: 1px solid #E5E5E5;border-radius: 5px;background: url("http://oij8a9ql4.bkt.clouddn.com/nothumb.png") no-repeat 50% 50%;background-size: auto 88%;}
+.option-lst icon{position: absolute;width: 70%;height: 0;padding-bottom: 70%;border: 1px solid #E5E5E5;border-radius: 5px;background: url("https://sunmengyuan.github.io/materials/garden/nothumb.jpg") no-repeat 50% 50%;background-size: auto 88%;}
 .option-lst view.active icon{border-color: greenyellow;}
 .option-glass view{padding-bottom: 40%;}
 .option-glass icon{width: 80%;padding-bottom: 80%;}
