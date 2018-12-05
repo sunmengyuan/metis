@@ -14,15 +14,15 @@
 
 + [Vue.js](http://cn.vuejs.org/)
 
-+ [Node.js 开发指南](http://okj45byt5.bkt.clouddn.com/Node.js%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.pdf)
++ [Node.js 开发指南](https://pan.baidu.com/s/141saC6llgB9a1Z0xU9ycbw)
 
-+ [深入浅出 Node.js](http://okj45byt5.bkt.clouddn.com/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BANode.js.pdf)
++ [深入浅出 Node.js](https://pan.baidu.com/s/12NH-J5SKWu7x-VAFAzN2dQ)
 
 + [Node.js 中文网](http://nodejs.cn/)
 
 + [Express - 基于 Node.js 平台的 Web 应用开发框架](http://www.expressjs.com.cn/)
 
-+ [深入学习 MongoDB](http://okj45byt5.bkt.clouddn.com/%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0MongoDB.pdf)
++ [深入学习 MongoDB](https://pan.baidu.com/s/1TFZ4zjlEV9KieKb_o8YDbg)
 
 + [MongoDB for GIANT Ideas | MongoDB](https://www.mongodb.com/)
 
